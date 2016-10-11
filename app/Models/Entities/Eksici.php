@@ -1,8 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Eksici extends Model
 {
