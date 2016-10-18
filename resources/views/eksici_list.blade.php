@@ -22,8 +22,17 @@
 
                                 bendekiHisse = $(frmObj).parent().parent().children("td.div-bendeki-hisse")[0].firstElementChild;
                                 bosHisse = $(frmObj).parent().parent().children("td.div-bos-hisse")[0].firstElementChild;
-                                $(bendekiHisse).html((parseInt($(bendekiHisse).html()) + parseInt($(frmObj).find("input.number").val())) + "%");
-                                $(bosHisse).html((parseInt($(bosHisse).html()) - parseInt($(frmObj).find("input.number").val())) + "%");
+                                console.log($(frmObj).find("input.submit"));
+                                if ($(frmObj).find("input.submit").val() == "Buy")
+                                {
+                                    $(bendekiHisse).html((parseInt($(bendekiHisse).html()) + parseInt($(frmObj).find("input.number").val())) + "%");
+                                    $(bosHisse).html((parseInt($(bosHisse).html()) - parseInt($(frmObj).find("input.number").val())) + "%");
+                                }
+                                else
+                                {
+                                    $(bendekiHisse).html((parseInt($(bendekiHisse).html()) - parseInt($(frmObj).find("input.number").val())) + "%");
+                                    $(bosHisse).html((parseInt($(bosHisse).html()) + parseInt($(frmObj).find("input.number").val())) + "%");
+                                }
                                 $(frmObj).parent().parent().children("td.islem").html("Transaction Successful");
 
                                 //buttonObj = $(frmObj).parent().parent().children("td.buttons")[0].firstElementChild;
@@ -49,9 +58,9 @@
                     form.append(input);
                     form.append(" (Max:" + $(this).attr("data-max") + ")");
                     if ($(this).attr("data-href").indexOf("hisseal") > -1)
-                        form.append("<input type='submit' value = 'alayım'>");
+                        form.append("<input type='submit' class='submit' value = 'Buy'>");
                     else
-                        form.append("<input type='submit' value = 'satayım'>");
+                        form.append("<input type='submit' class='submit' value = 'Sell'>");
                     $(this).parent().parent().children("td.islem").html(form);
                 }
                 else {
@@ -82,9 +91,15 @@
                                         <div style="display:inline-block;" class="bos-hisse">{{$eksici->boshisse}}%</div>
                                         </td>
                                     <td class="div-bendeki-hisse">
-                                         @if($eksici->hissem > 0)
-                                        <div style="display:inline-block;" class="bendeki-hisse">{{$eksici->hissem}}%
-                                        </div>@endif</td>
+
+                                        <div style="display:inline-block;" class="bendeki-hisse">
+                                            @if($eksici->hissem > 0)
+                                                {{$eksici->hissem}}
+                                            @else
+                                            0
+                                            @endif
+                                                %
+                                        </div></td>
                                     <td class="buttons"><input type="button" value="+" class="ajaxify" href="javascript:;"
                                                data-max="{{$eksici->boshisse ? $eksici->boshisse : 0}}"
                                                data-href="{{ url('/eksici/' . $eksici->id . "/hisseal") }}">

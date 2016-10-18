@@ -9,7 +9,6 @@
 
 namespace App\Models\Repositories\Eksici;
 use Illuminate\Support\ServiceProvider;
-use App\Models\Repositories\Eksici\EksiciRepository;
 use App\Models\Entities\Eksici;
 /**
  * Register our Repository with Laravel
@@ -23,7 +22,7 @@ class EksiciRepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         // Bind the returned class to the namespace 'Repositories\PokemonInterface
-        $this->app->bind('Repositories\Pokemon\PokemonInterface', function($app)
+        $this->app->bind('Repositories\Eksici\EksiciInterface', function($app)
         {
             return new EksiciRepository(new Eksici());
         });

@@ -156,7 +156,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Models\Repositories\Eksici\EksiciRepositoryServiceProvider::class,
-        App\Models\Services\Eksici\EksiciServiceServiceProvider::class
+        App\Models\Services\Eksici\EksiciServiceServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
 

@@ -9,9 +9,8 @@
 
 namespace App\Models\Repositories\Eksici;
 
-use Illuminate\Database\Eloquent\Model;
-use \stdClass;
-use App\Models\Repositories\Eksici\EksiciInterface;
+use Illuminate\Database\Eloquent\Builder;
+use App\Models\Entities\Eksici;
 use Auth;
 
 
@@ -20,13 +19,13 @@ class EksiciRepository implements EksiciInterface
     protected $eksiciModel;
     protected $hisse_multiplier = 1;
     protected $hisse_max = 100;
+
     /**
      * Setting our class $eksiciModel to the injected model
      *
-     * @param Model $eksici
-     * @return Null
+     * @param Eksici $eksici
      */
-    public function __construct(Model $eksici)
+    public function __construct(Eksici $eksici)
     {
         $this->eksiciModel = $eksici;
     }
@@ -34,7 +33,6 @@ class EksiciRepository implements EksiciInterface
     /**
      * getting all Eksici data
      *
-     * @param Model $eksici
      * @return array
      */
     public function getAllEksici()
@@ -56,12 +54,22 @@ class EksiciRepository implements EksiciInterface
         return $data;
     }
 
+    /**
+     * setter for Eksici model
+     *
+     * @param Eksici $eksici
+     */
     public function setEksici(Eksici $eksici)
     {
 
         $this->eksiciModel = $eksici;
     }
 
+    /**
+     * getter for Eksici model
+     *
+     * @return Eksici
+     */
     public function getEksici()
     {
 
@@ -71,7 +79,7 @@ class EksiciRepository implements EksiciInterface
     /**
      * getting stock data of current user
      *
-     * @return array
+     * @return integer
      */
     public function getStock()
     {
@@ -94,13 +102,14 @@ class EksiciRepository implements EksiciInterface
         return $this->hisse_max - $this->eksiciModel->user()->sum("hisse");
 
     }
+
     /**
      * adding stock to current user and pay the price
      *
      * @param integer $newStock
      * @param integer $newCurrency
      */
-    public function addStock($newStock,$newCurrency)
+    public function updateStock($newStock, $newCurrency)
     {
         if($this->eksiciModel->user()->where("user_id",Auth::user()->id)->count())
             $this->eksiciModel->user()->where("user_id",Auth::user()->id)->updateExistingPivot(Auth::user()->id,["hisse" => $newStock]);
@@ -110,12 +119,25 @@ class EksiciRepository implements EksiciInterface
         $this->eksiciModel->user()->where("user_id",Auth::user()->id)->update(["eksikurus" => $newCurrency]);
     }
 
+    /**
+     * get eksici data by nickname
+     *
+     * @param string $nick
+     * @return mixed
+     */
     public function getByNick($nick)
     {
         return $this->eksiciModel->where("nick", $nick);
     }
 
-    public function updateKarma($karma,$nick,$eksici)
+    /**
+     * update users karma score
+     *
+     * @param int $karma
+     * @param string $nick
+     * @param Builder $eksici
+     */
+    public function updateKarma($karma,$nick,Builder $eksici)
     {
         if( $eksici->count() > 0)
         {
