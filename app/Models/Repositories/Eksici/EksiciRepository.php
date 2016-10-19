@@ -38,7 +38,7 @@ class EksiciRepository implements EksiciInterface
     public function getAllEksici()
     {
         $data = array();
-        foreach($this->eksiciModel->all() as $eksici)
+        foreach($this->eksiciModel->all()->sortByDesc('karma') as $eksici)
         {
             $data[$eksici->id] = $eksici;
             $data[$eksici->id]['boshisse'] = $this->hisse_max;

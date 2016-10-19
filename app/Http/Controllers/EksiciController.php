@@ -13,6 +13,16 @@ class EksiciController extends Controller
 {
     protected $hisse_multiplier = 1;
     protected $hisse_max = 100;
+
+
+    /**
+     * Create a new controller instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function listele()
     {
         $repository = new EksiciRepository(new Eksici());
@@ -56,10 +66,10 @@ class EksiciController extends Controller
         //return view("hisse_sat",array("eksici" => $eksici));
     }
 
-    public function updateFollowers(Request $request)
+    public function updateFollowers()
     {
         $twitterApi = new TwitterAPI();
-        $result = $twitterApi->getTwitterData($request);
+        $result = $twitterApi->getTwitterData();
 
         $repository = new EksiciRepository(new Eksici());
         $response = "";

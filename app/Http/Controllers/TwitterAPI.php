@@ -34,23 +34,17 @@ class TwitterAPI
 
     }
 
-    public function getTwitterData(\Illuminate\Http\Request $request)
+    public function getTwitterData()
     {
-        if(!$request->session()->has('data')) {
-            $twitteruser = "TwitStockMarket";
-            $notweets = 100;
-            $method = 'GET';
-            //$path = '/1.1/followers/ids.json'; // api call path
-            $path = '/1.1/friends/ids.json'; // api call path
-            $query = '?screen_name=' . $twitteruser . '&count=' . $notweets;
-
-            $result = json_decode($this->twitterApi($query, $path, $method));
-
-            $path = '/1.1/users/lookup.json'; // api call path
-            $query = '?user_id=' . implode(",", $result->ids);
-            $request->session()->set('data',$this->twitterApi($query, $path, $method));
-        }
-        $result = json_decode($request->session()->get('data'));
+        $twitteruser = "TwitStockMarket";
+        $notweets = 100;
+        $method = 'GET';
+        $path = '/1.1/friends/ids.json'; // api call path
+        $query = '?screen_name=' . $twitteruser . '&count=' . $notweets;
+        $result = json_decode($this->twitterApi($query, $path, $method));
+        $path = '/1.1/users/lookup.json'; // api call path
+        $query = '?user_id=' . implode(",", $result->ids);
+        $result = json_decode($this->twitterApi($query, $path, $method));
         return $result;
     }
 }
