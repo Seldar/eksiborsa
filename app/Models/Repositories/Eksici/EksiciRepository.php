@@ -16,9 +16,8 @@ use Auth;
 
 class EksiciRepository implements EksiciInterface
 {
-    protected $eksiciModel;
-    protected $hisse_multiplier = 1;
-    protected $hisse_max = 100;
+    private $eksiciModel;
+    private $hisse_max = 100;
 
     /**
      * Setting our class $eksiciModel to the injected model

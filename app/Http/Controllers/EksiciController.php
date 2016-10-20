@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Entities\Eksici;
 use App\Models\Repositories\Eksici\EksiciRepository;
 use Auth;
-
+use App\Models\Entities\EksiciTrend;
+use App\Models\Repositories\EksiciTrend\EksiciTrendRepository;
 
 class EksiciController extends Controller
 {
@@ -52,7 +53,6 @@ class EksiciController extends Controller
     public function hissesat(Request $request,Eksici $eksici)
     {
         $repository = new EksiciRepository($eksici);
-        $availableStock = $repository->getAvailableStock();
         $myStock = $repository->getStock();
 
         if($myStock < $request->hisse)
@@ -71,13 +71,17 @@ class EksiciController extends Controller
         $twitterApi = new TwitterAPI();
         $result = $twitterApi->getTwitterData();
 
-        $repository = new EksiciRepository(new Eksici());
+        $eksiciRepository = new EksiciRepository(new Eksici());
+
         $response = "";
         foreach($result as $user)
         {
-            $eksici = $repository->getByNick($user->screen_name);
+            $eksiciTrendRepository = new EksiciTrendRepository(new EksiciTrend());
+            $eksici = $eksiciRepository->getByNick($user->screen_name);
             $karma = round(($user->followers_count/100000) + ($user->statuses_count/100),2);
-            $repository->updateKarma($karma,$user->screen_name,$eksici);
+            print_r(array("eksici_id" => $eksici->first()->id,"created_at" => date("Y-m-d"), "karma" => $karma));
+            $eksiciTrendRepository->save(array("eksici_id" => $eksici->first()->id,"created_at" => date("Y-m-d"), "karma" => $karma));
+            $eksiciRepository->updateKarma($karma,$user->screen_name,$eksici);
 
             $response .= $user->screen_name . ":" . (($user->followers_count/100000) +  ($user->statuses_count/100)). "<br>";
 
