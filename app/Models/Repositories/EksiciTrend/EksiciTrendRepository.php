@@ -26,7 +26,6 @@ class EksiciTrendRepository
 
     public function save($data)
     {
-        print_r($data);
         $this->eksiciTrendModel->eksici_id = $data['eksici_id'];
         $this->eksiciTrendModel->karma = $data['karma'];
         $this->eksiciTrendModel->created_at = $data['created_at'];

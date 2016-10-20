@@ -21,7 +21,7 @@ class EksiciRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Bind the returned class to the namespace 'Repositories\PokemonInterface
+        // Bind the returned class to the namespace 'Repositories\Eksici\EksiciInterface
         $this->app->bind('Repositories\Eksici\EksiciInterface', function($app)
         {
             return new EksiciRepository(new Eksici());

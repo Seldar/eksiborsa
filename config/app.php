@@ -204,7 +204,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'EksiciRep' => 'Services\Eksici\EksiciFacade',
+        'EksiciRep' => 'App\Models\Services\Eksici\EksiciFacade',
 
     ],
 

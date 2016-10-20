@@ -23,11 +23,11 @@ class EksiciServiceServiceProvider extends ServiceProvider
 
     public function register()
     {
-        // Binds 'pokemonService' to the result of the closure
-        $this->app->bind('pokemonService', function($app)
+        // Binds 'eksiciService' to the result of the closure
+        $this->app->bind('eksiciService', function($app)
         {
             return new EksiciService(
-            // Inject in our class of pokemonInterface, this will be our repository
+            // Inject in our class of eksiciInterface, this will be our repository
                 $app->make('Repositories\Eksici\EksiciInterface')
             );
         });
