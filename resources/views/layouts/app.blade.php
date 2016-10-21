@@ -51,6 +51,7 @@
                 <ul class="nav navbar-nav">
                     <!--li><a href="{{ url('/home') }}">Home</a></li-->
                     <li><a href="{{ url('/eksiciler') }}">Twitter Users</a></li>
+                    <li><a href="{{ url('/trends') }}">Trends</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

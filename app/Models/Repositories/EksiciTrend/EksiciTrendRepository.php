@@ -39,13 +39,14 @@ class EksiciTrendRepository implements EksiciTrendInterface
             $startDate = "1970-01-01";
         if(!$endDate)
             $endDate = date("Y-m-d");
-        $trends = $this->eksiciTrendModel->whereBetween('created_at',array($startDate,$endDate))->get();
+        $trends = $this->eksiciTrendModel->whereBetween('created_at',array($startDate,$endDate))->orderBy('created_at', 'asc')->get();
         $result = array();
         $dates = array();
         foreach($trends as $i => $trend)
         {
             $result[$trend->eksici->nick][] = $trend->karma;
-            $dates[$trend['created_at']->toDateTimeString()] = 1;
+            $dates[$trend['created_at']->toDateString()] = 1;
+
         }
 
         return array($result,$dates);
