@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Models\Repositories\Eksici\EksiciRepositoryServiceProvider::class,
         App\Models\Services\Eksici\EksiciServiceServiceProvider::class,
+        App\Models\Services\EksiciTrend\EksiciTrendServiceServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
@@ -205,6 +206,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'EksiciRep' => 'App\Models\Services\Eksici\EksiciFacade',
+        'EksiciTrendRep' => 'App\Models\Services\EksiciTrend\EksiciTrendFacade',
 
     ],
 

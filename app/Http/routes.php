@@ -36,5 +36,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/eksici/{eksici}/hisseal', 'EksiciController@hisseal');
     Route::post('/eksici/{eksici}/hissesat', 'EksiciController@hissesat');
 
+    Route::get('/trends', 'EksiciTrendController@showTrend');
+
     Route::get('/followers/', 'EksiciController@updateFollowers');
 });
