@@ -10,6 +10,7 @@
 namespace App\Models\Repositories\EksiciTrend;
 
 use App\Models\Entities\EksiciTrend;
+use \DB;
 
 class EksiciTrendRepository implements EksiciTrendInterface
 {
@@ -33,12 +34,19 @@ class EksiciTrendRepository implements EksiciTrendInterface
         $this->eksiciTrendModel->save();
     }
 
-    public function getByDate($startDate = "",$endDate = "")
+    public function getByDate($startDate = "",$endDate = "",$limit = 10)
     {
         if(!$startDate)
             $startDate = "1970-01-01";
         if(!$endDate)
             $endDate = date("Y-m-d");
+
+        $top = $this->eksiciTrendModel->orderBy(\DB::raw('AVG(karma)'),"desc")->groupBy("eksici_id")->take($limit)->get();
+        foreach($top as $topKarma)
+        {
+            $topKarmaList[] = $topKarma->eksici->nick;
+        }
+
         $trends = $this->eksiciTrendModel->whereBetween('created_at',array($startDate,$endDate))->orderBy('created_at', 'asc')->get();
         $result = array();
         $dates = array();
@@ -46,6 +54,8 @@ class EksiciTrendRepository implements EksiciTrendInterface
         $initialKarma = array();
         foreach($trends as $i => $trend)
         {
+            if(!in_array($trend->eksici->nick,$topKarmaList))
+                continue;
             if(!isset($initialKarma[$trend->eksici->nick]))
                 $initialKarma[$trend->eksici->nick] = $trend->karma;
             $result[$trend->eksici->nick][] = $trend->karma;
