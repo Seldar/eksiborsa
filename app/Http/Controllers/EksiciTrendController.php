@@ -27,6 +27,6 @@ class EksiciTrendController extends Controller
     {
         $eksiciTrendRepo = new EksiciTrendRepository(new EksiciTrend());
         $trends = $eksiciTrendRepo->getByDate();
-        return view("trend_list",array("data" => $trends[0],"dates" => $trends[1]));
+        return view("trend_list",array("data" => $trends[0],"dates" => $trends[1],"karmaTrends" => $trends[2]));
     }
 }

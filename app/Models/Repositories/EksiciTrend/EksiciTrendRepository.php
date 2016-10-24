@@ -42,13 +42,18 @@ class EksiciTrendRepository implements EksiciTrendInterface
         $trends = $this->eksiciTrendModel->whereBetween('created_at',array($startDate,$endDate))->orderBy('created_at', 'asc')->get();
         $result = array();
         $dates = array();
+        $karmaTrend = array();
+        $initialKarma = array();
         foreach($trends as $i => $trend)
         {
+            if(!isset($initialKarma[$trend->eksici->nick]))
+                $initialKarma[$trend->eksici->nick] = $trend->karma;
             $result[$trend->eksici->nick][] = $trend->karma;
+            $karmaTrend[$trend->eksici->nick][] = 100 * ($trend->karma / $initialKarma[$trend->eksici->nick]);
             $dates[$trend['created_at']->toDateString()] = 1;
 
         }
 
-        return array($result,$dates);
+        return array($result,$dates,$karmaTrend);
     }
 }
