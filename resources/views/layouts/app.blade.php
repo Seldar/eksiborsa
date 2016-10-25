@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Twitter Stock Exchange</title>
+    <title>Ek$iBorsa</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
     <script src="{{ url('/javascripts/main.js') }}"></script>
@@ -42,7 +42,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Twitter Stock Exchange
+                    Ek$iBorsa (Yatırım tavsiyesi değildir)
                 </a>
             </div>
 
@@ -50,8 +50,8 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <!--li><a href="{{ url('/home') }}">Home</a></li-->
-                    <li><a href="{{ url('/eksiciler') }}">Twitter Users</a></li>
-                    <li><a href="{{ url('/trends') }}">Trends</a></li>
+                    <li><a href="{{ url('/eksiciler') }}">Suserler</a></li>
+                    <li><a href="{{ url('/trends') }}">Trendler</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -61,7 +61,7 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                        <li><a href = "#">Twithalers: {{ Auth::user()->eksikurus }}</a></li>
+                        <li><a href = "#">EkşiKuruş: {{ Auth::user()->eksikurus }}</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>

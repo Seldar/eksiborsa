@@ -78,8 +78,8 @@
                     <tr class="panel-body">
                         <table class="table">
                             <tr>
-                                <th>User</th>
-                                <th>Stock Value</th>
+                                <th>Suser</th>
+                                <th>Karma</th>
                                 <th>Available (%)</th>
                                 <th>Owned (%)</th>
                             </tr>

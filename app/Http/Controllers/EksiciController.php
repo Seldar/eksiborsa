@@ -67,7 +67,9 @@ class EksiciController extends Controller
 
     public function updateFollowers()
     {
-        $twitterApi = new TwitterAPI();
+
+        return $this->updateEksici();
+        /*$twitterApi = new TwitterAPI();
         $result = $twitterApi->getTwitterData();
 
         $response = "";
@@ -79,10 +81,35 @@ class EksiciController extends Controller
             $eksiciTrendRepository->save(array("eksici_id" => $eksici->first()->id,"created_at" => date("Y-m-d"), "karma" => $karma));
             EksiciRep::updateKarma($karma,$user->screen_name,$eksici);
 
-            $response .= $user->screen_name . ":" . (($user->followers_count/100000) +  ($user->statuses_count/100)). "<br>";
+            $response .= $user->name . ":  @" . $user->screen_name . ":" . (($user->followers_count/100000) +  ($user->statuses_count/100)). "<br>";
 
         }
-        return $response;
+        return $response;*/
     }
 
+    public function updateEksici()
+    {
+        set_time_limit(3600);
+        $content = file_get_contents("http://eksistats.com/index.php?page=yazar&list=fav");
+        preg_match_all('/nick=(.*?)"/is',$content,$matches);
+        $result = $matches[1];
+        for($i = 0; $i < count($result); $i++)
+        {
+            $eksici = EksiciRep::getByNick($matches[1][$i]);
+            EksiciRep::updateKarma(0,$matches[1][$i],$eksici);
+
+        }
+        $eksicis = EksiciRep::getAllEksici();
+        foreach($eksicis as $user)
+        {
+            $content = file_get_contents("https://eksisozluk.com/biri/" . rawurlencode ($user->nick));
+            preg_match('/user-badges.*?muted.*?\((.*?)\)/is',$content,$matches);
+            $karma = $matches[1];
+            $eksici = EksiciRep::getByNick($user->nick);
+            EksiciRep::updateKarma($karma,$user->nick,$eksici);
+
+            $eksiciTrendRepository = new EksiciTrendRepository(new EksiciTrend());
+            $eksiciTrendRepository->save(array("eksici_id" => $eksici->first()->id,"created_at" => date("Y-m-d"), "karma" => $karma));
+        }
+    }
 }
