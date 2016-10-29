@@ -8,12 +8,12 @@
  */
 
 namespace App\Models\Services\EksiciTrend;
+
 use Illuminate\Support\ServiceProvider;
 
 /**
  * Register our eksiciTrend service with Laravel
  */
-
 class EksiciTrendServiceServiceProvider extends ServiceProvider
 {
     /**
@@ -24,8 +24,7 @@ class EksiciTrendServiceServiceProvider extends ServiceProvider
     public function register()
     {
         // Binds 'eksiciTrendService' to the result of the closure
-        $this->app->bind('eksiciTrendService', function($app)
-        {
+        $this->app->bind('eksiciTrendService', function ($app) {
             return new EksiciTrendService(
             // Inject in our class of eksiciTrendInterface, this will be our repository
                 $app->make('App\\Models\\Repositories\\EksiciTrend\\EksiciTrendInterface')

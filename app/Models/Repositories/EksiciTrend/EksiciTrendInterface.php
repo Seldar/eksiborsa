@@ -6,6 +6,7 @@
 interface EksiciTrendInterface
 {
     public function save($data);
+
     public function getByDate($startDate, $endDate);
 
 }

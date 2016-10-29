@@ -8,6 +8,7 @@
  */
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests;
 use Symfony\Component\HttpKernel\Tests\DataCollector\RequestDataCollectorTest;
 
@@ -15,7 +16,7 @@ class TwitterAPI
 {
 
 
-    public function twitterApi($query,$path,$method)
+    public function twitterApi($query, $path, $method)
     {
         $settings = array(
             'oauth_access_token' => "712957376341610496-FmFUWrk6aD5ZeHeTj6f9s4loCngqWvj",

@@ -8,6 +8,7 @@
  */
 
 namespace App\Models\Services\Eksici;
+
 use \Illuminate\Support\Facades\Facade;
 
 /**
@@ -21,5 +22,8 @@ class EksiciFacade extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'eksiciService'; }
+    protected static function getFacadeAccessor()
+    {
+        return 'eksiciService';
+    }
 }

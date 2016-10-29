@@ -8,6 +8,8 @@ class UserHisse extends Model
 {
     protected $table = 'user_hisse';
     protected $fillable = [
-        'eksici_id', 'user_id','hisse'
+        'eksici_id',
+        'user_id',
+        'hisse'
     ];
 }

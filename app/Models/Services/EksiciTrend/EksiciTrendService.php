@@ -13,6 +13,7 @@ use App\Models\Repositories\EksiciTrend\EksiciTrendInterface;
 use App\Models\Entities\EksiciTrend;
 use App\Models\Repositories\EksiciTrend\EksiciTrendRepository;
 use Illuminate\Database\Eloquent\Builder;
+
 /**
  * Our EksiciService, containing all useful methods for business logic around Eksici
  */
@@ -42,7 +43,7 @@ class EksiciTrendService
      */
     public function save($data)
     {
-       $this->eksiciRepo->save($data);
+        $this->eksiciRepo->save($data);
     }
 
     /**
@@ -50,10 +51,10 @@ class EksiciTrendService
      *
      * @param EksiciTrend $eksici
      */
-    public function getByDate($startDate,$endDate)
+    public function getByDate($startDate, $endDate)
     {
 
-        return $this->eksiciRepo->getByDate($startDate,$endDate);
+        return $this->eksiciRepo->getByDate($startDate, $endDate);
     }
 
 }

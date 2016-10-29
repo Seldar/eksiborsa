@@ -16,11 +16,13 @@ class EksiciTrend extends Model
 {
     protected $table = 'eksici_trend';
     protected $fillable = [
-        'eksici_id', 'karma', 'created_at'
+        'eksici_id',
+        'karma',
+        'created_at'
     ];
 
     public function eksici()
     {
-        return $this->belongsTo(Eksici::class, "eksici_id","id");
+        return $this->belongsTo(Eksici::class, "eksici_id", "id");
     }
 }

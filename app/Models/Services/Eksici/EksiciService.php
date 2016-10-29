@@ -13,6 +13,7 @@ use App\Models\Repositories\Eksici\EksiciInterface;
 use App\Models\Entities\Eksici;
 use App\Models\Repositories\Eksici\EksiciRepository;
 use Illuminate\Database\Eloquent\Builder;
+
 /**
  * Our EksiciService, containing all useful methods for business logic around Eksici
  */
@@ -45,7 +46,7 @@ class EksiciService
     public function getAllEksici()
     {
 
-       $eksicis = $this->eksiciRepo->getAllEksici();
+        $eksicis = $this->eksiciRepo->getAllEksici();
 
         // If nothing found, return this simple string
         return $eksicis;
@@ -70,7 +71,7 @@ class EksiciService
     public function getEksici()
     {
 
-        return  $this->eksiciRepo->getEksici();
+        return $this->eksiciRepo->getEksici();
     }
 
     /**
@@ -124,8 +125,8 @@ class EksiciService
      * @param string $nick
      * @param Builder $eksici
      */
-    public function updateKarma($karma,$nick,Builder $eksici)
+    public function updateKarma($karma, $nick, Builder $eksici)
     {
-        return $this->eksiciRepo->updateKarma($karma,$nick,$eksici);
+        return $this->eksiciRepo->updateKarma($karma, $nick, $eksici);
     }
 }

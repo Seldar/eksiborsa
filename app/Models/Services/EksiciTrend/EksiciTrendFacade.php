@@ -8,6 +8,7 @@
  */
 
 namespace App\Models\Services\EksiciTrend;
+
 use \Illuminate\Support\Facades\Facade;
 
 /**
@@ -21,5 +22,8 @@ class EksiciTrendFacade extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'eksiciTrendService'; }
+    protected static function getFacadeAccessor()
+    {
+        return 'eksiciTrendService';
+    }
 }

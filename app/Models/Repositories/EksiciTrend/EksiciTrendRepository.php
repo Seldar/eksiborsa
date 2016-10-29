@@ -15,6 +15,7 @@ use \DB;
 class EksiciTrendRepository implements EksiciTrendInterface
 {
     private $eksiciTrendModel;
+
     /**
      * Setting our class eksiciTrend Model to the injected model
      *
@@ -34,36 +35,40 @@ class EksiciTrendRepository implements EksiciTrendInterface
         $this->eksiciTrendModel->save();
     }
 
-    public function getByDate($startDate = "",$endDate = "",$limit = 10)
+    public function getByDate($startDate = "", $endDate = "", $limit = 10)
     {
-        if(!$startDate)
+        if (!$startDate) {
             $startDate = "1970-01-01";
-        if(!$endDate)
+        }
+        if (!$endDate) {
             $endDate = date("Y-m-d");
+        }
 
-        $top = $this->eksiciTrendModel->orderBy(\DB::raw('AVG(karma)'),"desc")->groupBy("eksici_id")->take($limit)->get();
-        foreach($top as $topKarma)
-        {
+        $top = $this->eksiciTrendModel->orderBy(\DB::raw('AVG(karma)'),
+            "desc")->groupBy("eksici_id")->take($limit)->get();
+        foreach ($top as $topKarma) {
             $topKarmaList[] = $topKarma->eksici->nick;
         }
 
-        $trends = $this->eksiciTrendModel->whereBetween('created_at',array($startDate,$endDate))->orderBy('created_at', 'asc')->get();
+        $trends = $this->eksiciTrendModel->whereBetween('created_at',
+            array($startDate, $endDate))->orderBy('created_at', 'asc')->get();
         $result = array();
         $dates = array();
         $karmaTrend = array();
         $initialKarma = array();
-        foreach($trends as $i => $trend)
-        {
-            if(!in_array($trend->eksici->nick,$topKarmaList))
+        foreach ($trends as $i => $trend) {
+            if (!in_array($trend->eksici->nick, $topKarmaList)) {
                 continue;
-            if(!isset($initialKarma[$trend->eksici->nick]))
+            }
+            if (!isset($initialKarma[$trend->eksici->nick])) {
                 $initialKarma[$trend->eksici->nick] = $trend->karma;
+            }
             $result[$trend->eksici->nick][] = $trend->karma;
             $karmaTrend[$trend->eksici->nick][] = 100 * ($trend->karma / $initialKarma[$trend->eksici->nick]);
             $dates[$trend['created_at']->toDateString()] = 1;
 
         }
 
-        return array($result,$dates,$karmaTrend);
+        return array($result, $dates, $karmaTrend);
     }
 }

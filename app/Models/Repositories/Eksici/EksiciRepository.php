@@ -37,14 +37,12 @@ class EksiciRepository implements EksiciInterface
     public function getAllEksici()
     {
         $data = array();
-        foreach($this->eksiciModel->all()->sortByDesc('karma') as $eksici)
-        {
+        foreach ($this->eksiciModel->all()->sortByDesc('karma') as $eksici) {
             $data[$eksici->id] = $eksici;
             $data[$eksici->id]['boshisse'] = $this->hisse_max;
-            foreach($eksici->user()->getResults() as $user) {
+            foreach ($eksici->user()->getResults() as $user) {
                 $data[$eksici->id]['boshisse'] -= $user->pivot->hisse;
-                if(Auth::user() && Auth::user()->id == $user->id)
-                {
+                if (Auth::user() && Auth::user()->id == $user->id) {
                     $data[$eksici->id]['hissem'] = $user->pivot->hisse;
                 }
 
@@ -83,10 +81,11 @@ class EksiciRepository implements EksiciInterface
     public function getStock()
     {
 
-        if(isset($this->eksiciModel->user()->where("user_id",Auth::user()->id)->first()->pivot))
-            $hissem = $this->eksiciModel->user()->where("user_id",Auth::user()->id)->first()->pivot->hisse;
-        else
+        if (isset($this->eksiciModel->user()->where("user_id", Auth::user()->id)->first()->pivot)) {
+            $hissem = $this->eksiciModel->user()->where("user_id", Auth::user()->id)->first()->pivot->hisse;
+        } else {
             $hissem = 0;
+        }
 
         return $hissem;
     }
@@ -110,12 +109,15 @@ class EksiciRepository implements EksiciInterface
      */
     public function updateStock($newStock, $newCurrency)
     {
-        if($this->eksiciModel->user()->where("user_id",Auth::user()->id)->count())
-            $this->eksiciModel->user()->where("user_id",Auth::user()->id)->updateExistingPivot(Auth::user()->id,["hisse" => $newStock]);
-        else
-            $this->eksiciModel->user()->where("user_id",Auth::user()->id)->attach(Auth::user()->id, ['hisse' => $newStock]);
+        if ($this->eksiciModel->user()->where("user_id", Auth::user()->id)->count()) {
+            $this->eksiciModel->user()->where("user_id", Auth::user()->id)->updateExistingPivot(Auth::user()->id,
+                ["hisse" => $newStock]);
+        } else {
+            $this->eksiciModel->user()->where("user_id", Auth::user()->id)->attach(Auth::user()->id,
+                ['hisse' => $newStock]);
+        }
 
-        $this->eksiciModel->user()->where("user_id",Auth::user()->id)->update(["eksikurus" => $newCurrency]);
+        $this->eksiciModel->user()->where("user_id", Auth::user()->id)->update(["eksikurus" => $newCurrency]);
     }
 
     /**
@@ -136,16 +138,13 @@ class EksiciRepository implements EksiciInterface
      * @param string $nick
      * @param Builder $eksici
      */
-    public function updateKarma($karma,$nick,Builder $eksici)
+    public function updateKarma($karma, $nick, Builder $eksici)
     {
-        if( $eksici->count() > 0)
-        {
+        if ($eksici->count() > 0) {
             $eksici->update(["karma" => $karma]);
 
-        }
-        else
-        {
-            $eksici = new Eksici(["nick" => $nick,"karma" => $karma]);
+        } else {
+            $eksici = new Eksici(["nick" => $nick, "karma" => $karma]);
             $eksici->save();
         }
     }

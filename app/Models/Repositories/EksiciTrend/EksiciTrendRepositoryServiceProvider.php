@@ -8,8 +8,10 @@
  */
 
 namespace App\Models\Repositories\EksiciTrend;
+
 use Illuminate\Support\ServiceProvider;
 use App\Models\Entities\EksiciTrend;
+
 /**
  * Register our Repository with Laravel
  */
@@ -22,8 +24,7 @@ class EksiciTrendRepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         // Bind the returned class to the namespace 'Repositories\EksiciTrend\EksiciTrendInterface
-        $this->app->bind('Repositories\EksiciTrend\EksiciTrendInterface', function($app)
-        {
+        $this->app->bind('Repositories\EksiciTrend\EksiciTrendInterface', function ($app) {
             return new EksiciTrendRepository(new EksiciTrend());
         });
     }
