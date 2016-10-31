@@ -84,6 +84,7 @@ class EksiciController extends Controller
 
     /**
      * Update Eksici data
+     * @return void
      */
     public function updateEksici()
     {

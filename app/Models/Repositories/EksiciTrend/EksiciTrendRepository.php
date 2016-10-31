@@ -36,6 +36,7 @@ class EksiciTrendRepository implements EksiciTrendInterface
 
     /**
      * @param $data
+     * @return void
      */
     public function save($data)
     {

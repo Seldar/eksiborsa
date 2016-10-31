@@ -27,7 +27,7 @@ class EksiciRepository implements EksiciInterface
     /**
      * @var int
      */
-    private $hisse_max = 100;
+    const HISSE_MAX = 100;
 
     /**
      * Setting our class $eksiciModel to the injected model
@@ -49,7 +49,7 @@ class EksiciRepository implements EksiciInterface
         $data = array();
         foreach ($this->eksiciModel->all()->sortByDesc('karma') as $eksici) {
             $data[$eksici->id] = $eksici;
-            $data[$eksici->id]['boshisse'] = $this->hisse_max;
+            $data[$eksici->id]['boshisse'] = self::HISSE_MAX;
             foreach ($eksici->user()->getResults() as $user) {
                 $data[$eksici->id]['boshisse'] -= $user->pivot->hisse;
                 if (Auth::user() && Auth::user()->id == $user->id) {
@@ -65,6 +65,7 @@ class EksiciRepository implements EksiciInterface
      * setter for Eksici model
      *
      * @param Eksici $eksici
+     * @return void
      */
     public function setEksici(Eksici $eksici)
     {
@@ -107,7 +108,7 @@ class EksiciRepository implements EksiciInterface
      */
     public function getAvailableStock()
     {
-        return $this->hisse_max - $this->eksiciModel->user()->sum("hisse");
+        return $this->HISSE_MAX - $this->eksiciModel->user()->sum("hisse");
 
     }
 
@@ -116,6 +117,7 @@ class EksiciRepository implements EksiciInterface
      *
      * @param integer $newStock
      * @param integer $newCurrency
+     * @return void
      */
     public function updateStock($newStock, $newCurrency)
     {
