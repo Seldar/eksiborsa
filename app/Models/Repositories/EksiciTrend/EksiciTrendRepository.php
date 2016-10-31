@@ -62,7 +62,7 @@ class EksiciTrendRepository implements EksiciTrendInterface
             $endDate = date("Y-m-d");
         }
         if (!$limit) {
-            $endDate = 10;
+            $limit = 10;
         }
 
         $trends = $this->eksiciTrendModel->whereBetween('created_at',
