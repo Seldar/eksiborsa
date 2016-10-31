@@ -12,10 +12,21 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Symfony\Component\HttpKernel\Tests\DataCollector\RequestDataCollectorTest;
 
+/**
+ * Class TwitterAPI
+ * Class to use twitter api
+ * @package App\Http\Controllers
+ */
 class TwitterAPI
 {
 
-
+    /**
+     * Execute twitter api request
+     * @param $query
+     * @param $path
+     * @param $method
+     * @return string
+     */
     public function twitterApi($query, $path, $method)
     {
         $settings = array(
@@ -24,17 +35,17 @@ class TwitterAPI
             'consumer_key' => "AKVG1UoS53c1sEVDs8Js0E3Rn",
             'consumer_secret' => "sbDcdauLcV0jrj0O0phdJz4FDHFmR9nF8pwkz1C0fjPZrve5sR"
         );
-        $url = 'https://api.twitter.com' . $path;
-        $getfield = $query;
-        $requestMethod = $method;
-
         $twitter = new TwitterAPIExchange($settings);
-        return $twitter->setGetfield($getfield)
-            ->buildOauth($url, $requestMethod)
+        return $twitter->setGetfield($query)
+            ->buildOauth('https://api.twitter.com' . $path, $method)
             ->performRequest();
 
     }
 
+    /**
+     * prepare twitter api and return result
+     * @return mixed
+     */
     public function getTwitterData()
     {
         $twitteruser = "TwitStockMarket";

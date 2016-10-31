@@ -2,9 +2,15 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Entities\Eksici;
 
+/**
+ * Class User
+ * User Model
+ * @package App
+ */
 class User extends Authenticatable
 {
     /**
@@ -13,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'eksikurus'
     ];
 
     /**
@@ -25,6 +31,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Defining belongsToMany relationship
+     * @return BelongsToMany
+     */
     public function eksici()
     {
         return $this->belongsToMany(Eksici::class, 'user_hisse',"user_id","eksici_id")->withPivot('hisse');

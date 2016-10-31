@@ -11,10 +11,17 @@ namespace App\Models\Repositories\EksiciTrend;
 
 use App\Models\Entities\EksiciTrend;
 use EksiciRep;
-use \DB;
 
+/**
+ * Class EksiciTrendRepository
+ * Repository to handle model to database interactions
+ * @package App\Models\Repositories\EksiciTrend
+ */
 class EksiciTrendRepository implements EksiciTrendInterface
 {
+    /**
+     * @var EksiciTrend
+     */
     private $eksiciTrendModel;
 
     /**
@@ -27,6 +34,9 @@ class EksiciTrendRepository implements EksiciTrendInterface
         $this->eksiciTrendModel = $eksiciTrend;
     }
 
+    /**
+     * @param $data
+     */
     public function save($data)
     {
         $this->eksiciTrendModel->eksici_id = $data['eksici_id'];
@@ -36,10 +46,23 @@ class EksiciTrendRepository implements EksiciTrendInterface
         $this->eksiciTrendModel->save();
     }
 
+    /**
+     * @param string $startDate
+     * @param string $endDate
+     * @param string $eksici
+     * @param int $limit
+     * @return array
+     */
     public function getByDate($startDate = "1970-01-01", $endDate = "", $eksici = "", $limit = 10)
     {
+        if (!$startDate) {
+            $startDate = "1970-01-01";
+        }
         if (!$endDate) {
             $endDate = date("Y-m-d");
+        }
+        if (!$limit) {
+            $endDate = 10;
         }
 
         $trends = $this->eksiciTrendModel->whereBetween('created_at',

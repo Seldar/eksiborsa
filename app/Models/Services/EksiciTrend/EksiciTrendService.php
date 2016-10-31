@@ -13,6 +13,7 @@ use App\Models\Repositories\EksiciTrend\EksiciTrendInterface;
 use App\Models\Entities\EksiciTrend;
 use App\Models\Repositories\EksiciTrend\EksiciTrendRepository;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Our EksiciService, containing all useful methods for business logic around Eksici
@@ -20,6 +21,9 @@ use Illuminate\Database\Eloquent\Builder;
 class EksiciTrendService
 {
 // Containing our eksiciRepository to make all our database calls to
+    /**
+     * @var EksiciTrendInterface
+     */
     protected $eksiciRepo;
 
     /**
@@ -32,6 +36,9 @@ class EksiciTrendService
         $this->eksiciRepo = $eksiciRepo;
     }
 
+    /**
+     * @param EksiciTrend $eksici
+     */
     public function setRepo(EksiciTrend $eksici)
     {
         $this->eksiciRepo = new EksiciTrendRepository($eksici);
@@ -49,7 +56,9 @@ class EksiciTrendService
     /**
      * setter for Eksici model
      *
-     * @param EksiciTrend $eksici
+     * @param string $startDate
+     * @param string $endDate
+     * @return Collection
      */
     public function getByDate($startDate, $endDate)
     {

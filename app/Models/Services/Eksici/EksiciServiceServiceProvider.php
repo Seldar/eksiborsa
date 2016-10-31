@@ -18,7 +18,6 @@ class EksiciServiceServiceProvider extends ServiceProvider
 {
     /**
      * Registers the service in the IoC Container
-     *
      */
 
     public function register()

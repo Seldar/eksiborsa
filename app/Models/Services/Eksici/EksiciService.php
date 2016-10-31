@@ -20,19 +20,24 @@ use Illuminate\Database\Eloquent\Builder;
 class EksiciService
 {
 // Containing our eksiciRepository to make all our database calls to
+    /**
+     * @var EksiciInterface
+     */
     protected $eksiciRepo;
 
     /**
      * Loads our $eksiciRepo with the actual Repo associated with our eksiciInterface
      *
      * @param EksiciInterface $eksiciRepo
-     * @return EksiciService
      */
     public function __construct(EksiciInterface $eksiciRepo)
     {
         $this->eksiciRepo = $eksiciRepo;
     }
 
+    /**
+     * @param Eksici $eksici
+     */
     public function setRepo(Eksici $eksici)
     {
         $this->eksiciRepo = new EksiciRepository($eksici);
@@ -124,6 +129,7 @@ class EksiciService
      * @param int $karma
      * @param string $nick
      * @param Builder $eksici
+     * @return $int
      */
     public function updateKarma($karma, $nick, Builder $eksici)
     {

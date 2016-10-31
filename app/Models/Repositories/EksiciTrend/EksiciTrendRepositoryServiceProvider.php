@@ -19,7 +19,6 @@ class EksiciTrendRepositoryServiceProvider extends ServiceProvider
 {
     /**
      * Registers the eksiciTrendInterface with Laravels IoC Container
-     *
      */
     public function register()
     {

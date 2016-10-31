@@ -19,7 +19,6 @@ class EksiciRepositoryServiceProvider extends ServiceProvider
 {
     /**
      * Registers the eksiciInterface with Laravels IoC Container
-     *
      */
     public function register()
     {

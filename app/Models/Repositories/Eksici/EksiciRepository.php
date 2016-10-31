@@ -13,10 +13,20 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\Entities\Eksici;
 use Auth;
 
-
+/**
+ * Class EksiciRepository
+ * Repository to handle model to database interactions
+ * @package App\Models\Repositories\Eksici
+ */
 class EksiciRepository implements EksiciInterface
 {
+    /**
+     * @var Eksici
+     */
     private $eksiciModel;
+    /**
+     * @var int
+     */
     private $hisse_max = 100;
 
     /**
@@ -137,6 +147,7 @@ class EksiciRepository implements EksiciInterface
      * @param int $karma
      * @param string $nick
      * @param Builder $eksici
+     * @return int
      */
     public function updateKarma($karma, $nick, Builder $eksici)
     {
@@ -147,5 +158,6 @@ class EksiciRepository implements EksiciInterface
             $eksici = new Eksici(["nick" => $nick, "karma" => $karma]);
             $eksici->save();
         }
+        return 1;
     }
 }
