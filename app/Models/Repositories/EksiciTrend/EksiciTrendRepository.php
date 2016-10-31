@@ -10,6 +10,7 @@
 namespace App\Models\Repositories\EksiciTrend;
 
 use App\Models\Entities\EksiciTrend;
+use EksiciRep;
 use \DB;
 
 class EksiciTrendRepository implements EksiciTrendInterface
@@ -35,23 +36,29 @@ class EksiciTrendRepository implements EksiciTrendInterface
         $this->eksiciTrendModel->save();
     }
 
-    public function getByDate($startDate = "", $endDate = "", $limit = 10)
+    public function getByDate($startDate = "1970-01-01", $endDate = "", $eksici = "", $limit = 10)
     {
-        if (!$startDate) {
-            $startDate = "1970-01-01";
-        }
         if (!$endDate) {
             $endDate = date("Y-m-d");
         }
 
-        $top = $this->eksiciTrendModel->orderBy(\DB::raw('AVG(karma)'),
-            "desc")->groupBy("eksici_id")->take($limit)->get();
-        foreach ($top as $topKarma) {
-            $topKarmaList[] = $topKarma->eksici->nick;
+        $trends = $this->eksiciTrendModel->whereBetween('created_at',
+            array($startDate, $endDate))->orderBy('created_at', 'asc');
+
+        if (!$eksici) {
+            $top = $this->eksiciTrendModel->orderBy(\DB::raw('AVG(karma)'),
+                "desc")->groupBy("eksici_id")->take($limit)->get();
+            foreach ($top as $topKarma) {
+                $topKarmaList[] = $topKarma->eksici->nick;
+            }
+            $trends = $trends->get();
+        } else {
+            $topKarmaList[] = $eksici;
+            $eksiRow = EksiciRep::getByNick($eksici)->get();
+            $trends = $trends->where('eksici_id', '=',
+                $eksiRow[0]->id)->get();
         }
 
-        $trends = $this->eksiciTrendModel->whereBetween('created_at',
-            array($startDate, $endDate))->orderBy('created_at', 'asc')->get();
         $result = array();
         $dates = array();
         $karmaTrend = array();

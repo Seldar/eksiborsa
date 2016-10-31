@@ -11,7 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Entities\EksiciTrend;
 use App\Models\Repositories\EksiciTrend\EksiciTrendRepository;
-
+use Illuminate\Http\Request;
 class EksiciTrendController extends Controller
 {
 
@@ -23,10 +23,10 @@ class EksiciTrendController extends Controller
         //$this->middleware('auth');
     }
 
-    public function showTrend()
+    public function showTrend(Request $request)
     {
         $eksiciTrendRepo = new EksiciTrendRepository(new EksiciTrend());
-        $trends = $eksiciTrendRepo->getByDate();
+        $trends = $eksiciTrendRepo->getByDate($request->startDate,$request->endDate,$request->eksici,$request->topX);
         return view("trend_list", array("data" => $trends[0], "dates" => $trends[1], "karmaTrends" => $trends[2]));
     }
 }

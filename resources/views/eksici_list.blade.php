@@ -15,21 +15,19 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        success: function(data) {
-                            if(data)
-                                    alert(data);
+                        success: function (data) {
+                            if (data)
+                                alert(data);
                             else {
 
                                 bendekiHisse = $(frmObj).parent().parent().children("td.div-bendeki-hisse")[0].firstElementChild;
                                 bosHisse = $(frmObj).parent().parent().children("td.div-bos-hisse")[0].firstElementChild;
                                 console.log($(frmObj).find("input.submit"));
-                                if ($(frmObj).find("input.submit").val() == "Buy")
-                                {
+                                if ($(frmObj).find("input.submit").val() == "Buy") {
                                     $(bendekiHisse).html((parseInt($(bendekiHisse).html()) + parseInt($(frmObj).find("input.number").val())) + "%");
                                     $(bosHisse).html((parseInt($(bosHisse).html()) - parseInt($(frmObj).find("input.number").val())) + "%");
                                 }
-                                else
-                                {
+                                else {
                                     $(bendekiHisse).html((parseInt($(bendekiHisse).html()) - parseInt($(frmObj).find("input.number").val())) + "%");
                                     $(bosHisse).html((parseInt($(bosHisse).html()) + parseInt($(frmObj).find("input.number").val())) + "%");
                                 }
@@ -88,21 +86,24 @@
                                     <td>{{$eksici->nick}}</td>
                                     <td>{{$eksici->karma}}</td>
                                     <td class="div-bos-hisse">
-                                        <div style="display:inline-block;" class="bos-hisse">{{$eksici->boshisse}}%</div>
-                                        </td>
+                                        <div style="display:inline-block;" class="bos-hisse">{{$eksici->boshisse}}%
+                                        </div>
+                                    </td>
                                     <td class="div-bendeki-hisse">
 
                                         <div style="display:inline-block;" class="bendeki-hisse">
                                             @if($eksici->hissem > 0)
                                                 {{$eksici->hissem}}
                                             @else
-                                            0
+                                                0
                                             @endif
-                                                %
-                                        </div></td>
-                                    <td class="buttons"><input type="button" value="+" class="ajaxify" href="javascript:;"
-                                               data-max="{{$eksici->boshisse ? $eksici->boshisse : 0}}"
-                                               data-href="{{ url('/eksici/' . $eksici->id . "/hisseal") }}">
+                                            %
+                                        </div>
+                                    </td>
+                                    <td class="buttons"><input type="button" value="+" class="ajaxify"
+                                                               href="javascript:;"
+                                                               data-max="{{$eksici->boshisse ? $eksici->boshisse : 0}}"
+                                                               data-href="{{ url('/eksici/' . $eksici->id . "/hisseal") }}">
                                         <input type="button" value="-" class="ajaxify" href="javascript:;"
                                                data-max="{{$eksici->hissem ? $eksici->hissem : 0}}"
                                                data-href="{{ url('/eksici/' . $eksici->id . "/hissesat") }}"></td>
