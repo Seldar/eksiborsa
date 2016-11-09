@@ -4,6 +4,7 @@
  * User: Ulukut
  * Date: 11.10.2016
  * Time: 16:13
+ *
  * @author Volkan Ulukut <arthan@gmail.com>
  */
 
@@ -16,15 +17,20 @@ use Auth;
 /**
  * Class EksiciRepository
  * Repository to handle model to database interactions
+ *
  * @package App\Models\Repositories\Eksici
  */
 class EksiciRepository implements EksiciInterface
 {
     /**
+     * Eksici Model to make database calls
+     *
      * @var Eksici
      */
     private $eksiciModel;
     /**
+     * Maximum count of Hisse for each stock
+     *
      * @var int
      */
     const HISSE_MAX = 100;
@@ -40,7 +46,7 @@ class EksiciRepository implements EksiciInterface
     }
 
     /**
-     * getting all Eksici data
+     * Getting all Eksici data
      *
      * @return array
      */
@@ -62,9 +68,10 @@ class EksiciRepository implements EksiciInterface
     }
 
     /**
-     * setter for Eksici model
+     * Setter for Eksici model
      *
      * @param Eksici $eksici
+     *
      * @return void
      */
     public function setEksici(Eksici $eksici)
@@ -74,7 +81,7 @@ class EksiciRepository implements EksiciInterface
     }
 
     /**
-     * getter for Eksici model
+     * Getter for Eksici model
      *
      * @return Eksici
      */
@@ -85,7 +92,7 @@ class EksiciRepository implements EksiciInterface
     }
 
     /**
-     * getting stock data of current user
+     * Getting stock data of current user
      *
      * @return integer
      */
@@ -102,7 +109,7 @@ class EksiciRepository implements EksiciInterface
     }
 
     /**
-     * getting available stock data for current user, for current stock
+     * Getting available stock data for current user, for current stock
      *
      * @return integer
      */
@@ -113,10 +120,11 @@ class EksiciRepository implements EksiciInterface
     }
 
     /**
-     * adding stock to current user and pay the price
+     * Adding stock to current user and pay the price
      *
      * @param integer $newStock
      * @param integer $newCurrency
+     *
      * @return void
      */
     public function updateStock($newStock, $newCurrency)
@@ -133,9 +141,10 @@ class EksiciRepository implements EksiciInterface
     }
 
     /**
-     * get eksici data by nickname
+     * Get eksici data by nickname
      *
      * @param string $nick
+     *
      * @return mixed
      */
     public function getByNick($nick)
@@ -144,11 +153,12 @@ class EksiciRepository implements EksiciInterface
     }
 
     /**
-     * update users karma score
+     * Update users karma score
      *
-     * @param int $karma
-     * @param string $nick
+     * @param int     $karma
+     * @param string  $nick
      * @param Builder $eksici
+     *
      * @return int
      */
     public function updateKarma($karma, $nick, Builder $eksici)

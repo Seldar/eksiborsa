@@ -4,6 +4,7 @@
  * User: Ulukut
  * Date: 21.10.2016
  * Time: 14:30
+ *
  * @author Volkan Ulukut <arthan@gmail.com>
  */
 
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 /**
  * Class EksiciTrendController
  * Controller to handle trend requests
+ *
  * @package App\Http\Controllers
  */
 class EksiciTrendController extends Controller
@@ -26,8 +28,10 @@ class EksiciTrendController extends Controller
     }
 
     /**
-     * returns trend list view
+     * Returns trend list view
+     *
      * @param Request $request
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showTrend(Request $request)

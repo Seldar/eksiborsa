@@ -4,6 +4,7 @@
  * User: Ulukut
  * Date: 20.10.2016
  * Time: 15:13
+ *
  * @author Volkan Ulukut <arthan@gmail.com>
  */
 
@@ -15,11 +16,14 @@ use EksiciRep;
 /**
  * Class EksiciTrendRepository
  * Repository to handle model to database interactions
+ *
  * @package App\Models\Repositories\EksiciTrend
  */
 class EksiciTrendRepository implements EksiciTrendInterface
 {
     /**
+     * Contains EksiciTrend Model
+     *
      * @var EksiciTrend
      */
     private $eksiciTrendModel;
@@ -35,7 +39,10 @@ class EksiciTrendRepository implements EksiciTrendInterface
     }
 
     /**
+     * Method to save array $data data to Eksici model
+     *
      * @param $data
+     *
      * @return void
      */
     public function save($data)
@@ -48,10 +55,13 @@ class EksiciTrendRepository implements EksiciTrendInterface
     }
 
     /**
+     * Get Eksici Trends by date filter
+     *
      * @param string $startDate
      * @param string $endDate
      * @param string $eksici
-     * @param int $limit
+     * @param int    $limit
+     *
      * @return array
      */
     public function getByDate($startDate = "1970-01-01", $endDate = "", $eksici = "", $limit = 10)

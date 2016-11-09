@@ -11,7 +11,8 @@ use EksiciRep;
 
 /**
  * Class EksiciController
- * Controll to handle Eksici related requests
+ * Controller to handle Eksici related requests
+ *
  * @package App\Http\Controllers
  */
 class EksiciController extends Controller
@@ -26,6 +27,7 @@ class EksiciController extends Controller
 
     /**
      * Returns eksici list view
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function listele()
@@ -36,8 +38,10 @@ class EksiciController extends Controller
 
     /**
      * Spend eksikurus and add new stock(s) to user
+     *
      * @param Request $request
-     * @param Eksici $eksici
+     * @param Eksici  $eksici
+     *
      * @return string
      */
     public function hisseal(Request $request, Eksici $eksici)
@@ -62,8 +66,10 @@ class EksiciController extends Controller
 
     /**
      * Remove stock(s) from user and add eksikurus to user
+     *
      * @param Request $request
-     * @param Eksici $eksici
+     * @param Eksici  $eksici
+     *
      * @return string
      */
     public function hissesat(Request $request, Eksici $eksici)
@@ -84,6 +90,7 @@ class EksiciController extends Controller
 
     /**
      * Update Eksici data
+     *
      * @return void
      */
     public function updateEksici()
@@ -116,6 +123,7 @@ class EksiciController extends Controller
 
     /**
      * Update Twitter data
+     *
      * @return string
      */
     public function updateTwitter()

@@ -8,15 +8,21 @@ use App\User;
 
 /**
  * Class Eksici
+ *
  * @package App\Models\Entities
  */
 class Eksici extends Model
 {
     /**
+     * Custom table name
+     *
      * @var string
      */
     protected $table = 'eksici';
+
     /**
+     * Fields that are mass settable.
+     *
      * @var array
      */
     protected $fillable = [
@@ -26,6 +32,7 @@ class Eksici extends Model
 
     /**
      * Defining belongsToMany relationship
+     *
      * @return belongsToMany
      */
     public function user()

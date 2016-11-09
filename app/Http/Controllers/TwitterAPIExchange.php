@@ -16,46 +16,64 @@ namespace App\Http\Controllers;
 class TwitterAPIExchange
 {
     /**
+     * Contains oauth_access_token
+     *
      * @var string
      */
     private $oauth_access_token;
 
     /**
+     * Contains $oauth_access_token_secret
+     *
      * @var string
      */
     private $oauth_access_token_secret;
 
     /**
+     * Contains $consumer_key
+     *
      * @var string
      */
     private $consumer_key;
 
     /**
+     * Contains $consumer_secret
+     *
      * @var string
      */
     private $consumer_secret;
 
     /**
+     * Contains $postfields
+     *
      * @var array
      */
     private $postfields;
 
     /**
+     * Contains $getfield
+     *
      * @var string
      */
     private $getfield;
 
     /**
+     * Contains $oauth
+     *
      * @var mixed
      */
     protected $oauth;
 
     /**
+     * Contains $url
+     *
      * @var string
      */
     public $url;
 
     /**
+     * Contains $requestMethod
+     *
      * @var string
      */
     public $requestMethod;
@@ -66,9 +84,9 @@ class TwitterAPIExchange
      * These are all available by creating your own application on dev.twitter.com
      * Requires the cURL library
      *
-     * @throws \Exception When cURL isn't installed or incorrect settings parameters are provided
-     *
      * @param array $settings
+     *
+     * @throws \Exception When cURL isn't installed or incorrect settings parameters are provided
      */
     public function __construct(array $settings)
     {
@@ -132,7 +150,7 @@ class TwitterAPIExchange
      *
      * @throws \Exception
      *
-     * @return \TwitterAPIExchange Instance of self for method chaining
+     * @return self Instance of self for method chaining
      */
     public function setGetfield($string)
     {
@@ -179,12 +197,13 @@ class TwitterAPIExchange
      * Build the Oauth object using params set in construct and additionals
      * passed to this method. For v1.1, see: https://dev.twitter.com/docs/api/1.1
      *
-     * @param string $url The API url to use. Example: https://api.twitter.com/1.1/search/tweets.json
-     * @param string $requestMethod Either POST or GET
+     * @param string $url            The API url to use. Example:
+     *                               https://api.twitter.com/1.1/search/tweets.json
+     * @param string $requestMethod  Either POST or GET
      *
      * @throws \Exception
      *
-     * @return \TwitterAPIExchange Instance of self for method chaining
+     * @return self Instance of self for method chaining
      */
     public function buildOauth($url, $requestMethod)
     {
@@ -214,7 +233,7 @@ class TwitterAPIExchange
             foreach ($getfields as $g) {
                 $split = explode('=', $g);
 
-                /** In case a null is passed through **/
+                // In case a null is passed through
                 if (isset($split[1])) {
                     $oauth[$split[0]] = urldecode($split[1]);
                 }
@@ -244,8 +263,8 @@ class TwitterAPIExchange
     /**
      * Perform the actual data retrieval from the API
      *
-     * @param boolean $return If true, returns data. This is left in for backward compatibility reasons
-     * @param array $curlOptions Additional Curl options for this request
+     * @param boolean $return      If true, returns data. This is left in for backward compatibility reasons
+     * @param array   $curlOptions Additional Curl options for this request
      *
      * @throws \Exception
      *
@@ -300,7 +319,7 @@ class TwitterAPIExchange
      *
      * @param string $baseURI
      * @param string $method
-     * @param array $params
+     * @param array  $params
      *
      * @return string Built base string
      */
@@ -352,7 +371,7 @@ class TwitterAPIExchange
      * @param string $url
      * @param string $method
      * @param string $data
-     * @param array $curlOptions
+     * @param array  $curlOptions
      *
      * @throws \Exception
      *

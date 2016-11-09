@@ -4,6 +4,7 @@
  * User: Ulukut
  * Date: 11.10.2016
  * Time: 16:33
+ *
  * @author Volkan Ulukut <arthan@gmail.com>
  */
 
@@ -19,8 +20,9 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class EksiciService
 {
-// Containing our eksiciRepository to make all our database calls to
     /**
+     * Containing eksiciRepository to make all our database calls to
+     *
      * @var EksiciInterface
      */
     protected $eksiciRepo;
@@ -36,6 +38,8 @@ class EksiciService
     }
 
     /**
+     * Setter for the Eksici Repository
+     *
      * @param Eksici $eksici
      */
     public function setRepo(Eksici $eksici)
@@ -58,7 +62,7 @@ class EksiciService
     }
 
     /**
-     * setter for Eksici model
+     * Setter for Eksici model
      *
      * @param Eksici $eksici
      */
@@ -69,7 +73,7 @@ class EksiciService
     }
 
     /**
-     * getter for Eksici model
+     * Getter for Eksici model
      *
      * @return Eksici
      */
@@ -80,7 +84,7 @@ class EksiciService
     }
 
     /**
-     * getting stock data of current user
+     * Getting stock data of current user
      *
      * @return integer
      */
@@ -91,7 +95,7 @@ class EksiciService
     }
 
     /**
-     * getting available stock data for current user, for current stock
+     * Getting available stock data for current user, for current stock
      *
      * @return integer
      */
@@ -102,7 +106,7 @@ class EksiciService
     }
 
     /**
-     * adding stock to current user and pay the price
+     * Adding stock to current user and pay the price
      *
      * @param integer $newStock
      * @param integer $newCurrency
@@ -113,9 +117,10 @@ class EksiciService
     }
 
     /**
-     * get eksici data by nickname
+     * Get eksici data by nickname
      *
      * @param string $nick
+     *
      * @return mixed
      */
     public function getByNick($nick)
@@ -124,12 +129,13 @@ class EksiciService
     }
 
     /**
-     * update users karma score
+     * Update users karma score
      *
-     * @param int $karma
-     * @param string $nick
+     * @param int     $karma
+     * @param string  $nick
      * @param Builder $eksici
-     * @return $int
+     *
+     * @return int
      */
     public function updateKarma($karma, $nick, Builder $eksici)
     {

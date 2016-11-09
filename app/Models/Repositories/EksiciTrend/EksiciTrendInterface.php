@@ -1,25 +1,34 @@
 <?php namespace App\Models\Repositories\EksiciTrend;
 
-/**
- * A simple interface to set the methods in our Eksici repository, nothing much happening here
- */
+    /**
+     * A simple interface to set the methods in our Eksici repository, nothing much happening here
+     */
 /**
  * Interface EksiciTrendInterface
+ *
  * @package App\Models\Repositories\EksiciTrend
  */
 interface EksiciTrendInterface
 {
     /**
+     * Method to save array $data data to Eksici model
+     *
      * @param $data
+     *
      * @return mixed
      */
     public function save($data);
 
     /**
-     * @param $startDate
-     * @param $endDate
+     * Get Eksici Trends by date filter
+     *
+     * @param string $startDate
+     * @param string $endDate
+     * @param string $eksici
+     * @param int    $limit
+     *
      * @return mixed
      */
-    public function getByDate($startDate, $endDate);
+    public function getByDate($startDate = "1970-01-01", $endDate = "", $eksici = "", $limit = 10);
 
 }

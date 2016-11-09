@@ -4,17 +4,16 @@
  * User: Ulukut
  * Date: 11.10.2016
  * Time: 17:31
+ *
  * @author Volkan Ulukut <arthan@gmail.com>
  */
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use Symfony\Component\HttpKernel\Tests\DataCollector\RequestDataCollectorTest;
-
 /**
  * Class TwitterAPI
  * Class to use twitter api
+ *
  * @package App\Http\Controllers
  */
 class TwitterAPI
@@ -22,9 +21,11 @@ class TwitterAPI
 
     /**
      * Execute twitter api request
-     * @param $query
-     * @param $path
-     * @param $method
+     *
+     * @param string $query  Query to be executed
+     * @param string $path   API path
+     * @param string $method API method
+     *
      * @return string
      */
     public function twitterApi($query, $path, $method)
@@ -43,7 +44,8 @@ class TwitterAPI
     }
 
     /**
-     * prepare twitter api and return result
+     * Prepare twitter api and return result
+     *
      * @return mixed
      */
     public function getTwitterData()

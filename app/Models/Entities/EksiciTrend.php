@@ -4,6 +4,7 @@
  * User: Ulukut
  * Date: 20.10.2016
  * Time: 15:16
+ *
  * @author Volkan Ulukut <arthan@gmail.com>
  */
 
@@ -14,15 +15,21 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class EksiciTrend
+ *
  * @package App\Models\Entities
  */
 class EksiciTrend extends Model
 {
     /**
+     * Custom table name
+     *
      * @var string
      */
     protected $table = 'eksici_trend';
+
     /**
+     * Fields that are mass settable.
+     *
      * @var array
      */
     protected $fillable = [
@@ -32,6 +39,8 @@ class EksiciTrend extends Model
     ];
 
     /**
+     * Defining BelongsTo relationship
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function eksici()

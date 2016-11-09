@@ -4,6 +4,7 @@
  * User: Ulukut
  * Date: 11.10.2016
  * Time: 16:33
+ *
  * @author Volkan Ulukut <arthan@gmail.com>
  */
 
@@ -12,7 +13,6 @@ namespace App\Models\Services\EksiciTrend;
 use App\Models\Repositories\EksiciTrend\EksiciTrendInterface;
 use App\Models\Entities\EksiciTrend;
 use App\Models\Repositories\EksiciTrend\EksiciTrendRepository;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
@@ -20,8 +20,9 @@ use Illuminate\Database\Eloquent\Collection;
  */
 class EksiciTrendService
 {
-// Containing our eksiciRepository to make all our database calls to
     /**
+     * Containing our eksiciRepository to make all our database calls to
+     *
      * @var EksiciTrendInterface
      */
     protected $eksiciRepo;
@@ -37,6 +38,8 @@ class EksiciTrendService
     }
 
     /**
+     * Setter for EksiciRepository
+     *
      * @param EksiciTrend $eksici
      */
     public function setRepo(EksiciTrend $eksici)
@@ -47,6 +50,7 @@ class EksiciTrendService
     /**
      * Method to save data
      *
+     * @param array $data
      */
     public function save($data)
     {
@@ -54,10 +58,11 @@ class EksiciTrendService
     }
 
     /**
-     * setter for Eksici model
+     * Setter for Eksici model
      *
      * @param string $startDate
      * @param string $endDate
+     *
      * @return Collection
      */
     public function getByDate($startDate, $endDate)
