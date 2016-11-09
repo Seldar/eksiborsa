@@ -79,6 +79,8 @@ class EksiciTrendRepository implements EksiciTrendInterface
         $trends = $this->eksiciTrendModel->whereBetween('created_at',
             array($startDate, $endDate))->orderBy('created_at', 'asc');
 
+
+        $topKarmaList = [];
         if (!$eksici) {
             $top = $this->eksiciTrendModel->orderBy(\DB::raw('AVG(karma)'),
                 "desc")->groupBy("eksici_id")->take($limit)->get();

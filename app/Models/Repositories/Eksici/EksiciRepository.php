@@ -115,7 +115,7 @@ class EksiciRepository implements EksiciInterface
      */
     public function getAvailableStock()
     {
-        return $this->HISSE_MAX - $this->eksiciModel->user()->sum("hisse");
+        return EksiciRepository::HISSE_MAX - $this->eksiciModel->user()->sum("hisse");
 
     }
 
