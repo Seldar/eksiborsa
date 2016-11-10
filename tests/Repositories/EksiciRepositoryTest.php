@@ -114,10 +114,10 @@ class EksiciRepositoryTest extends TestCase
         $eksici = new Eksici();
         $eksici = $eksici->find(1);
         $this->repo->updateKarma(600, $eksici->nick, $eksici);
-        $this->assertSame(600.0, $this->repo->getByNick($eksici->nick)->karma);
+        $this->assertSame(600, $this->repo->getByNick($eksici->nick)->karma);
 
         $this->repo->updateKarma(600, "test2", $this->repo->getByNick('test2'));
-        $this->assertSame(600.0, $this->repo->getByNick('test2')->karma);
+        $this->assertSame(600, $this->repo->getByNick('test2')->karma);
     }
 
 

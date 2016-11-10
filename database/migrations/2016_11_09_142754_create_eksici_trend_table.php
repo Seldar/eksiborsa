@@ -15,7 +15,7 @@ class CreateEksiciTrendTable extends Migration
         Schema::create('eksici_trend', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('eksici_id');
-            $table->decimal('karma');
+            $table->integer('karma');
             $table->timestamps();
         });
     }

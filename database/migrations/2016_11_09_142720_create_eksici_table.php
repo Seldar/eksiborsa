@@ -15,7 +15,7 @@ class CreateEksiciTable extends Migration
         Schema::create('eksici', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nick');
-            $table->decimal('karma');
+            $table->integer('karma');
             $table->timestamps();
         });
     }
