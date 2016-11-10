@@ -134,10 +134,10 @@ class EksiciController extends Controller
         $response = "";
         foreach ($result as $user) {
             $eksiciTrendRepository = new EksiciTrendRepository(new EksiciTrend());
-            $eksici = EksiciRep::getByNick($user->screen_name);
+            $eksici = EksiciRep::getByNick($user->screen_name->first());
             $karma = round(($user->followers_count / 100000) + ($user->statuses_count / 100), 2);
             $eksiciTrendRepository->save(array(
-                "eksici_id" => $eksici->first()->id,
+                "eksici_id" => $eksici->id,
                 "created_at" => date("Y-m-d"),
                 "karma" => $karma
             ));

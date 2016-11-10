@@ -69,10 +69,10 @@ interface EksiciInterface
      *
      * @param int     $karma  karma rating to set to
      * @param string  $nick   nick of the user
-     * @param Builder $eksici query Builder to update from
+     * @param Eksici $eksici Eksici entity to update from
      *
      * @return mixed
      */
-    public function updateKarma($karma, $nick, Builder $eksici);
+    public function updateKarma($karma, $nick, Eksici $eksici);
 
 }

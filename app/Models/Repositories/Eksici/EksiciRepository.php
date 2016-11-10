@@ -98,7 +98,6 @@ class EksiciRepository implements EksiciInterface
      */
     public function getStock()
     {
-
         if (isset($this->eksiciModel->user()->where("user_id", Auth::user()->id)->first()->pivot)) {
             $hissem = $this->eksiciModel->user()->where("user_id", Auth::user()->id)->first()->pivot->hisse;
         } else {
@@ -145,11 +144,11 @@ class EksiciRepository implements EksiciInterface
      *
      * @param string $nick
      *
-     * @return mixed
+     * @return Eksici|null
      */
     public function getByNick($nick)
     {
-        return $this->eksiciModel->where("nick", $nick);
+        return $this->eksiciModel->where("nick", $nick)->first();
     }
 
     /**
@@ -157,13 +156,13 @@ class EksiciRepository implements EksiciInterface
      *
      * @param int     $karma
      * @param string  $nick
-     * @param Builder $eksici
+     * @param Eksici $eksici
      *
      * @return int
      */
-    public function updateKarma($karma, $nick, Builder $eksici)
+    public function updateKarma($karma, $nick, Eksici $eksici = null)
     {
-        if ($eksici->count() > 0) {
+        if ($eksici) {
             $eksici->update(["karma" => $karma]);
 
         } else {
