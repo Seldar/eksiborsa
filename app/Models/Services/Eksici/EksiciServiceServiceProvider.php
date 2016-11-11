@@ -27,7 +27,7 @@ class EksiciServiceServiceProvider extends ServiceProvider
         $this->app->bind('eksiciService', function ($app) {
             return new EksiciService(
             // Inject in our class of eksiciInterface, this will be our repository
-                $app->make('Repositories\Eksici\EksiciInterface')
+                $app->make('App\Repositories\Eksici\EksiciInterface')
             );
         });
     }

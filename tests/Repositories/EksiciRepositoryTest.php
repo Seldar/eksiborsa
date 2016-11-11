@@ -13,8 +13,8 @@ namespace Tests\Repositories;
 use App\Models\Repositories\Eksici\EksiciRepository;
 use App\Models\Entities\Eksici;
 use TestCase;
-use Auth;
 use App\User;
+use App\Models\Services\Eksici\EksiciService;
 
 /**
  * Class EksiciRepositoryTest
@@ -23,8 +23,6 @@ use App\User;
  */
 class EksiciRepositoryTest extends TestCase
 {
-
-
     /**
      * Contains Eksici Repo
      *
@@ -119,7 +117,6 @@ class EksiciRepositoryTest extends TestCase
         $this->repo->updateKarma(600, "test2", $this->repo->getByNick('test2'));
         $this->assertSame(600, $this->repo->getByNick('test2')->karma);
     }
-
 
     public function loginWithFakeUser()
     {

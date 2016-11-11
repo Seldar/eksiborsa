@@ -67,8 +67,8 @@ interface EksiciInterface
     /**
      * Update users karma score
      *
-     * @param int     $karma  karma rating to set to
-     * @param string  $nick   nick of the user
+     * @param int    $karma  karma rating to set to
+     * @param string $nick   nick of the user
      * @param Eksici $eksici Eksici entity to update from
      *
      * @return mixed

@@ -10,7 +10,6 @@
 
 namespace App\Models\Repositories\Eksici;
 
-use Illuminate\Database\Eloquent\Builder;
 use App\Models\Entities\Eksici;
 use Auth;
 
@@ -154,8 +153,8 @@ class EksiciRepository implements EksiciInterface
     /**
      * Update users karma score
      *
-     * @param int     $karma
-     * @param string  $nick
+     * @param int    $karma
+     * @param string $nick
      * @param Eksici $eksici
      *
      * @return int

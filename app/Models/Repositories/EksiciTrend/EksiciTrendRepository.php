@@ -107,7 +107,7 @@ class EksiciTrendRepository implements EksiciTrendInterface
                 $initialKarma[$trend->eksici->nick] = $trend->karma;
             }
             $result[$trend->eksici->nick][] = $trend->karma;
-            $karmaTrend[$trend->eksici->nick][] = 100 * ($trend->karma / $initialKarma[$trend->eksici->nick]);
+            $karmaTrend[$trend->eksici->nick][] = round(100 * ($trend->karma / $initialKarma[$trend->eksici->nick]),2);
             $dates[$trend['created_at']->toDateString()] = 1;
 
         }
