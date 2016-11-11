@@ -3,7 +3,8 @@
 
 [![Build Status](https://travis-ci.org/Seldar/eksiborsa.svg?branch=master)](https://travis-ci.org/Seldar/eksiborsa) 
 [![codecov.io](http://codecov.io/github/Seldar/eksiborsa/coverage.svg?branch=master)](http://codecov.io/github/Seldar/eksiborsa?branch=master) 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/eksiborsa/job-board/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Seldar/eksiborsa/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Seldar/eksiborsa/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Seldar/eksiborsa/?branch=master)
+
 
 Ek$iborsa is a a browser based stock exchange game developed with laravel
 
