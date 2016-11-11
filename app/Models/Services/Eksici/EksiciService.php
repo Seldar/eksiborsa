@@ -133,11 +133,11 @@ class EksiciService
      *
      * @param int     $karma
      * @param string  $nick
-     * @param Builder $eksici
+     * @param Eksici $eksici
      *
      * @return int
      */
-    public function updateKarma($karma, $nick, Builder $eksici)
+    public function updateKarma($karma, $nick, Eksici $eksici = null)
     {
         return $this->eksiciRepo->updateKarma($karma, $nick, $eksici);
     }

@@ -24,7 +24,7 @@ class EksiciSeeder extends Seeder
 
         DB::table('eksici')->insert([
             'nick' => str_random(10),
-            'karma' => rand(500,1000)
+            'karma' => 500
         ]);
     }
 }

@@ -93,11 +93,10 @@
 
                                         <div style="display:inline-block;" class="bendeki-hisse">
                                             @if($eksici->hissem > 0)
-                                                {{$eksici->hissem}}
+                                                {{$eksici->hissem}}%
                                             @else
-                                                0
+                                                0%
                                             @endif
-                                            %
                                         </div>
                                     </td>
                                     <td class="buttons"><input type="button" value="+" class="ajaxify"

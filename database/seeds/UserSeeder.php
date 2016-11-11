@@ -24,10 +24,10 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert([
             'id' => 1,
-            'name' => str_random(10),
-            'email' => str_random(10),
-            'password' => str_random(10),
-            'eksikurus' => rand(500,1000)
+            'name' => "Volkan Ulukut",
+            'email' => "test@gmail.com",
+            'password' => Hash::make("12345"),
+            'eksikurus' => rand(5000,10000)
         ]);
 
         DB::table('user_hisse')->truncate();

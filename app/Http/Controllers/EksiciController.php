@@ -46,12 +46,12 @@ class EksiciController extends Controller
      */
     public function hisseal(Request $request, Eksici $eksici)
     {
+
         EksiciRep::setRepo($eksici);
         $availableStock = EksiciRep::getAvailableStock();
         $myStock = EksiciRep::getStock();
-
         if (Auth::user()->eksikurus < $request->hisse * $eksici->karma) {
-            return "You don't have enough Twithalers.";
+            return "You don't have enough Eksikurus.";
         }
         if ($availableStock < $request->hisse) {
             return $eksici->nick . "' doesn't have that much stock available.";
@@ -59,6 +59,7 @@ class EksiciController extends Controller
 
         $newStock = $request->hisse + $myStock;
         $newCurrency = Auth::user()->eksikurus - $request->hisse * $eksici->karma;
+
         EksiciRep::updateStock($newStock, $newCurrency);
 
         return "";
@@ -91,9 +92,11 @@ class EksiciController extends Controller
     /**
      * Update Eksici data
      *
+     * @param int $limit
+     *
      * @return void
      */
-    public function updateEksici()
+    public function updateEksici($limit = 9999)
     {
         set_time_limit(3600);
         $content = file_get_contents("http://eksistats.com/index.php?page=yazar&list=fav");
@@ -102,7 +105,9 @@ class EksiciController extends Controller
         for ($i = 0; $i < count($result); $i++) {
             $eksici = EksiciRep::getByNick($matches[1][$i]);
             EksiciRep::updateKarma(0, $matches[1][$i], $eksici);
-
+            if (--$limit == 0) {
+                break;
+            }
         }
         $eksicis = EksiciRep::getAllEksici();
         foreach ($eksicis as $user) {
@@ -124,9 +129,11 @@ class EksiciController extends Controller
     /**
      * Update Twitter data
      *
+     * @param int $limit
+     *
      * @return string
      */
-    public function updateTwitter()
+    public function updateTwitter($limit = 9999)
     {
         $twitterApi = new TwitterAPI();
         $result = $twitterApi->getTwitterData();
@@ -134,17 +141,20 @@ class EksiciController extends Controller
         $response = "";
         foreach ($result as $user) {
             $eksiciTrendRepository = new EksiciTrendRepository(new EksiciTrend());
-            $eksici = EksiciRep::getByNick($user->screen_name->first());
+            $eksici = EksiciRep::getByNick($user->screen_name);
             $karma = round(($user->followers_count / 100000) + ($user->statuses_count / 100), 2);
-            $eksiciTrendRepository->save(array(
-                "eksici_id" => $eksici->id,
-                "created_at" => date("Y-m-d"),
-                "karma" => $karma
-            ));
+            if ($eksici) {
+                $eksiciTrendRepository->save(array(
+                    "eksici_id" => $eksici->id,
+                    "created_at" => date("Y-m-d"),
+                    "karma" => $karma
+                ));
+            }
             EksiciRep::updateKarma($karma, $user->screen_name, $eksici);
-
             $response .= $user->name . ":  @" . $user->screen_name . ":" . (($user->followers_count / 100000) + ($user->statuses_count / 100)) . "<br>";
-
+            if (--$limit == 0) {
+                break;
+            }
         }
         return $response;
     }

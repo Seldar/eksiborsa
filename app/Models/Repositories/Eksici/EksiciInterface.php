@@ -73,6 +73,6 @@ interface EksiciInterface
      *
      * @return mixed
      */
-    public function updateKarma($karma, $nick, Eksici $eksici);
+    public function updateKarma($karma, $nick, Eksici $eksici = null);
 
 }

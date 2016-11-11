@@ -1,27 +1,44 @@
-# Laravel PHP Framework
+# Ek$iBorsa 
+========================================================================================================================================================================================================================================================================================
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+[![Build Status](https://travis-ci.org/Seldar/eksiborsa.svg?branch=master)](https://travis-ci.org/Seldar/eksiborsa) 
+[![codecov.io](http://codecov.io/github/Seldar/eksiborsa/coverage.svg?branch=master)](http://codecov.io/github/Seldar/eksiborsa?branch=master) 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/eksiborsa/job-board/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Seldar/eksiborsa/?branch=master)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Ek$iborsa is a a browser based stock exchange game developed with laravel
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Requirements
+------------
 
-## Official Documentation
+  * PHP 5.3 or higher;
+  * [Laravel 5.3.*](https://github.com/laravel/laravel)
+  * [abraham/twitteroauth](https://github.com/abraham/twitteroauth)
+  * [j7mbo/twitter-api-php](https://github.com/J7mbo/twitter-api-php)
+  * [PHPUnit 5.4](https://github.com/sebastianbergmann/phpunit) or higher.
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Installation
+------------
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Install using composer:
 
-## Security Vulnerabilities
+```bash
+$ composer install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Run Database Migration and Seeds for sample data:
 
-## License
+```bash
+php artisan migrate
+php artisan db:seed
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Run below command to generate a unique key for security. 
+
+```bash
+php artisan key:generate
+```
+Usage
+-----
+
+After installation point your browser to "public/" directory. UnitTests can be run in tests/ folder.
