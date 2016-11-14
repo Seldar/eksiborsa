@@ -13,6 +13,7 @@ namespace Tests\Repositories;
 use App\Models\Repositories\EksiciTrend\EksiciTrendRepository;
 use App\Models\Entities\EksiciTrend;
 use App\Models\Entities\Eksici;
+use DateTime;
 
 class EksiciTrendRepositoryTest extends \TestCase
 {
