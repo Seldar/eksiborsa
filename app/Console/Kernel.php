@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\DataParser;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Http\Controllers\EksiciController;
@@ -28,7 +29,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             $controller = new EksiciController();
-            $controller->updateEksici();
+            $controller->updateEksici(new DataParser());
         })->daily();
     }
 }
