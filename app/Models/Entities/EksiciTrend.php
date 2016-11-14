@@ -20,7 +20,7 @@ use Illuminate\Database\Query\Builder;
  *
  * @package App\Models\Entities
  *
- * @property int $ekisic_id
+ * @property int $eksici_id
  * @property int $karma
  * @property Carbon $created_at
  *

@@ -8,7 +8,6 @@ use Auth;
 use App\Models\Entities\EksiciTrend;
 use App\Models\Repositories\EksiciTrend\EksiciTrendRepository;
 use EksiciRep;
-use Laracurl;
 
 /**
  * Class EksiciController
@@ -94,14 +93,15 @@ class EksiciController extends Controller
      * Update Eksici data
      *
      * @param int $limit
+     * @param DataParser $dp
      *
      * @return void
      */
-    public function updateEksici($limit = 9999)
+    public function updateEksici($limit = 9999, DataParser $dp)
     {
         set_time_limit(3600);
-        $content = Laracurl::get("http://sozlock.com/yazarlar");
-        preg_match_all('/eksilogok.*?span> (.*?) </is', $content, $matches);
+        $content = $dp->parse("http://sozlock.com/yazarlar");
+        preg_match_all('/eksilogok.*?span> (.*?) </is', $content->body, $matches);
         $result = $matches[1];
         $cntResult = count($result);
         for ($i = 0; $i < $cntResult; $i++) {
@@ -113,7 +113,7 @@ class EksiciController extends Controller
         }
         $eksicis = EksiciRep::getAllEksici();
         foreach ($eksicis as $user) {
-            $content = Laracurl::get("https://eksisozluk.com/biri/" . rawurlencode($user->nick));
+            $content = $dp->parse("https://eksisozluk.com/biri/" . rawurlencode($user->nick));
             if ($content) {
                 preg_match('/user-badges.*?muted.*?\((.*?)\)/is', $content->body, $matches);
                 preg_match('/entry-count-lastmonth.*?>(.*?)</is', $content->body, $lastMonth);
@@ -166,4 +166,5 @@ class EksiciController extends Controller
         }
         return $response;
     }
+
 }

@@ -9,7 +9,6 @@ before_script:
     - php artisan migrate --force
     - cp .env.travis .env
     - php artisan key:generate
-    - curl "https://eksisozluk.com/biri/komoloba"
 
 script:
     - vendor/bin/phpunit --coverage-clover=coverage.xml

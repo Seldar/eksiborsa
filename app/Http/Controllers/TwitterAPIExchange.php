@@ -370,7 +370,7 @@ class TwitterAPIExchange
      *
      * @param string $url
      * @param string $method
-     * @param string $data
+     * @param array $data
      * @param array  $curlOptions
      *
      * @throws \Exception

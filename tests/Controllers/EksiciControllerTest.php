@@ -14,6 +14,7 @@ use App\Http\Controllers\EksiciController;
 use App\User;
 use App\Models\Entities\Eksici;
 use DB;
+use Tests\TestDataParser;
 
 /**
  * Class EksiciControllerTest
@@ -92,8 +93,8 @@ class EksiciControllerTest extends \TestCase
     public function testUpdateEksici()
     {
         DB::table('eksici')->truncate();
-        $this->controller->updateEksici(5);
-        $this->assertSame(5, Eksici::get()->count());
+        $this->controller->updateEksici(2, new TestDataParser());
+        $this->assertSame(2, Eksici::get()->count());
     }
 
     /**
@@ -102,8 +103,8 @@ class EksiciControllerTest extends \TestCase
     public function testUpdateTwitter()
     {
         DB::table('eksici')->truncate();
-        $this->controller->updateTwitter(5);
-        $this->assertSame(5, Eksici::get()->count());
+        $this->controller->updateTwitter(2);
+        $this->assertSame(2, Eksici::get()->count());
     }
 
     /**
