@@ -5,11 +5,17 @@ namespace App\Models\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Eksici
  *
  * @package App\Models\Entities
+ *
+ * @property int $karma
+ * @property int $nick
+ *
+ * @method Builder where(string $column, string $operator, string $value, string $boolean)
  */
 class Eksici extends Model
 {

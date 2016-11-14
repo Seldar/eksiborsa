@@ -13,6 +13,7 @@ namespace Tests\Repositories;
 use App\Models\Repositories\EksiciTrend\EksiciTrendRepository;
 use App\Models\Entities\EksiciTrend;
 use App\Models\Entities\Eksici;
+use DateTime;
 
 class EksiciTrendRepositoryTest extends \TestCase
 {
@@ -48,14 +49,21 @@ class EksiciTrendRepositoryTest extends \TestCase
     public function testGetByDate()
     {
         $now = date("Y-m-d H:i:s");
+        $datetime = new DateTime(date("Y-m-d"));
+        $today = $datetime->format('Y-m-d');
+        $datetime->modify('-1 day');
+        $yesterday = $datetime->format('Y-m-d');
+        $datetime->modify('-1 day');
+        $thedaybefore = $datetime->format('Y-m-d');
+
         $eksici = Eksici::find(1);
         $result = $this->repo->getByDate("1970-01-01", $now, $eksici->nick, 10);
         reset($result[0]);
         $this->assertSame([500, 400, 300], current($result[0]));
         $this->assertSame([
-            '2016-11-09' => 1,
-            '2016-11-10' => 1,
-            '2016-11-11' => 1
+            $thedaybefore => 1,
+            $yesterday => 1,
+            $today => 1
         ], $result[1]);
         reset($result[2]);
         $this->assertSame([

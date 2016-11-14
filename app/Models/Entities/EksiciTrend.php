@@ -11,12 +11,21 @@
 namespace App\Models\Entities;
 
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 /**
  * Class EksiciTrend
  *
  * @package App\Models\Entities
+ *
+ * @property int $ekisic_id
+ * @property int $karma
+ * @property Carbon $created_at
+ *
+ * @method Builder whereBetween(string $column, array $values, string $boolean = 'and', boolean $not = false)
+ * @method Builder orderBy(string $column, string $direction)
  */
 class EksiciTrend extends Model
 {

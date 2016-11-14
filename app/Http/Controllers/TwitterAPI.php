@@ -28,7 +28,7 @@ class TwitterAPI
      *
      * @return string
      */
-    public function twitterApi($query, $path, $method)
+    public function execTwitterApi($query, $path, $method)
     {
         $settings = array(
             'oauth_access_token' => "712957376341610496-FmFUWrk6aD5ZeHeTj6f9s4loCngqWvj",
@@ -55,10 +55,10 @@ class TwitterAPI
         $method = 'GET';
         $path = '/1.1/friends/ids.json'; // api call path
         $query = '?screen_name=' . $twitteruser . '&count=' . $notweets;
-        $result = json_decode($this->twitterApi($query, $path, $method));
+        $result = json_decode($this->execTwitterApi($query, $path, $method));
         $path = '/1.1/users/lookup.json'; // api call path
         $query = '?user_id=' . implode(",", $result->ids);
-        $result = json_decode($this->twitterApi($query, $path, $method));
+        $result = json_decode($this->execTwitterApi($query, $path, $method));
         return $result;
     }
 }
