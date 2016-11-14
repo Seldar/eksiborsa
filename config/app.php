@@ -159,6 +159,7 @@ return [
         App\Models\Services\Eksici\EksiciServiceServiceProvider::class,
         App\Models\Services\EksiciTrend\EksiciTrendServiceServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Zjango\Laracurl\LaracurlServiceProvider::class,
 
     ],
 
@@ -207,6 +208,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'EksiciRep' => 'App\Models\Services\Eksici\EksiciFacade',
         'EksiciTrendRep' => 'App\Models\Services\EksiciTrend\EksiciTrendFacade',
+        'Laracurl'  =>  'Zjango\Laracurl\Facades\Laracurl',
 
     ],
 

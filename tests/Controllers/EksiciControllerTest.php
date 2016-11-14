@@ -63,12 +63,12 @@ class EksiciControllerTest extends \TestCase
             ->see('You don\'t have that much stock available.');
     }
 
-    /*public function testUpdateEksici()
+    public function testUpdateEksici()
     {
         DB::table('eksici')->truncate();
         $this->controller->updateEksici(5);
         $this->assertSame(5, Eksici::get()->count());
-    }*/
+    }
 
     public function testUpdateTwitter()
     {
