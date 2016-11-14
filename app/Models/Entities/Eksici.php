@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $karma
  * @property int $nick
  *
- * @method Builder where(string $column, string $operator, string $value, string $boolean)
+ * @method Builder where(string $column, string $operator = null, string $value = null, string $boolean = 'and')
  */
 class Eksici extends Model
 {

@@ -25,7 +25,7 @@ use Illuminate\Database\Query\Builder;
  * @property Carbon $created_at
  *
  * @method Builder whereBetween(string $column, array $values, string $boolean = 'and', boolean $not = false)
- * @method Builder orderBy(string $column, string $direction)
+ * @method Builder orderBy(string $column, string $direction = 'asc')
  */
 class EksiciTrend extends Model
 {
