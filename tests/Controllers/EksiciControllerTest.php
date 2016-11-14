@@ -15,10 +15,24 @@ use App\User;
 use App\Models\Entities\Eksici;
 use DB;
 
+/**
+ * Class EksiciControllerTest
+ *
+ * @package Tests\Controllers
+ */
 class EksiciControllerTest extends \TestCase
 {
+
+    /**
+     * Contains EksiciController
+     *
+     * @var EksiciController
+     */
     private $controller;
 
+    /**
+     *
+     */
     public function setUp()
     {
         parent::setUp();
@@ -27,6 +41,9 @@ class EksiciControllerTest extends \TestCase
         $this->loginWithFakeUser();
     }
 
+    /**
+     *
+     */
     public function testListele()
     {
         $this->visit('/eksiciler')
@@ -34,6 +51,9 @@ class EksiciControllerTest extends \TestCase
             ->see('33%');
     }
 
+    /**
+     *
+     */
     public function testHisseal()
     {
         $this->post('/eksici/1/hisseal', ['hisse' => '1'])
@@ -50,6 +70,9 @@ class EksiciControllerTest extends \TestCase
             ->see('doesn\'t have that much stock available');
     }
 
+    /**
+     *
+     */
     public function testHissesat()
     {
         $this->post('/eksici/1/hissesat', ['hisse' => '1'])
@@ -63,6 +86,9 @@ class EksiciControllerTest extends \TestCase
             ->see('You don\'t have that much stock available.');
     }
 
+    /**
+     *
+     */
     public function testUpdateEksici()
     {
         DB::table('eksici')->truncate();
@@ -70,6 +96,9 @@ class EksiciControllerTest extends \TestCase
         $this->assertSame(5, Eksici::get()->count());
     }
 
+    /**
+     *
+     */
     public function testUpdateTwitter()
     {
         DB::table('eksici')->truncate();
@@ -77,6 +106,9 @@ class EksiciControllerTest extends \TestCase
         $this->assertSame(5, Eksici::get()->count());
     }
 
+    /**
+     *
+     */
     public function loginWithFakeUser()
     {
         $user = new User([

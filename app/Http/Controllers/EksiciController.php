@@ -118,7 +118,6 @@ class EksiciController extends Controller
                 preg_match('/user-badges.*?muted.*?\((.*?)\)/is', $content->body, $matches);
                 preg_match('/entry-count-lastmonth.*?>(.*?)</is', $content->body, $lastMonth);
                 if (isset($matches[1]) && $matches[1] > 250 && $lastMonth[1] > 0) {
-                    echo $user->nick . ":" . $matches[1] . ":" . $lastMonth[1];
                     $karma = $matches[1];
                     $eksici = EksiciRep::getByNick($user->nick);
                     EksiciRep::updateKarma($karma, $user->nick, $eksici);
@@ -157,13 +156,13 @@ class EksiciController extends Controller
                     "created_at" => date("Y-m-d"),
                     "karma" => $karma
                 ));
-
-                EksiciRep::updateKarma($karma, $user->screen_name, $eksici);
-                $response .= $user->name . ":  @" . $user->screen_name . ":" . (($user->followers_count / 100000) + ($user->statuses_count / 100)) . "<br>";
-                if (--$limit == 0) {
-                    break;
-                }
             }
+            EksiciRep::updateKarma($karma, $user->screen_name, $eksici);
+            $response .= $user->name . ":  @" . $user->screen_name . ":" . (($user->followers_count / 100000) + ($user->statuses_count / 100)) . "<br>";
+            if (--$limit == 0) {
+                break;
+            }
+
         }
         return $response;
     }
