@@ -14,9 +14,14 @@ use App\User;
 
 class EksiciTrendControllerTest extends \TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->seed('DatabaseSeeder');
+        $this->loginWithFakeUser();
+    }
     public function testShowTrend()
     {
-        $this->loginWithFakeUser();
         $this->visit('/trends')
             ->assertResponseOk();
     }
