@@ -91,6 +91,14 @@ class EksiciController extends Controller
     }
 
     /**
+     * Update data using Eksici method
+     */
+    public function updateData()
+    {
+        $this->updateEksici(9999, new DataParser());
+    }
+
+    /**
      * Update Eksici data
      *
      * @param int        $limit
@@ -132,6 +140,14 @@ class EksiciController extends Controller
         \DB::table('eksici')->where('karma', 0)->delete();
     }
 
+    /**
+     * Update Karma by filtering nick field
+     *
+     * @param string $nick
+     * @param int $karma
+     *
+     * @return mixed
+     */
     public function updateKarmaByNick($nick, $karma)
     {
         $eksici = EksiciRep::getByNick($nick);

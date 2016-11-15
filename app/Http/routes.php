@@ -38,5 +38,5 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/trends', 'EksiciTrendController@showTrend');
 
-    Route::get('/followers/', 'EksiciController@updateEksici');
+    Route::get('/followers/', 'EksiciController@updateData');
 });
