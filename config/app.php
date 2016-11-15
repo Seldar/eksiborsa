@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Models\Repositories\Eksici\EksiciRepositoryServiceProvider::class,
         App\Models\Services\Eksici\EksiciServiceServiceProvider::class,
+        App\Models\Repositories\EksiciTrend\EksiciTrendRepositoryServiceProvider::class,
         App\Models\Services\EksiciTrend\EksiciTrendServiceServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Zjango\Laracurl\LaracurlServiceProvider::class,

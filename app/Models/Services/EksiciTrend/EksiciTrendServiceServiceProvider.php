@@ -27,7 +27,7 @@ class EksiciTrendServiceServiceProvider extends ServiceProvider
         $this->app->bind('eksiciTrendService', function ($app) {
             return new EksiciTrendService(
             // Inject in our class of eksiciTrendInterface, this will be our repository
-                $app->make('App\\Models\\Repositories\\EksiciTrend\\EksiciTrendInterface')
+                $app->make('App\Models\Repositories\EksiciTrend\EksiciTrendInterface')
             );
         });
     }

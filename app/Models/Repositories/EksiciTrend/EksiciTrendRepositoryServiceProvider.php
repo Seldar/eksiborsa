@@ -24,7 +24,7 @@ class EksiciTrendRepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         // Bind the returned class to the namespace 'Repositories\EksiciTrend\EksiciTrendInterface
-        $this->app->bind('Repositories\EksiciTrend\EksiciTrendInterface', function () {
+        $this->app->bind('App\Models\Repositories\EksiciTrend\EksiciTrendInterface', function () {
             return new EksiciTrendRepository(new EksiciTrend());
         });
     }

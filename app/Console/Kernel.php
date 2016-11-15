@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             $controller = new EksiciController();
-            $controller->updateEksici(new DataParser());
+            $controller->updateEksici(9999,new DataParser());
         })->daily();
     }
 }

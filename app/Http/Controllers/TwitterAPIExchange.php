@@ -111,7 +111,7 @@ class TwitterAPIExchange
     /**
      * Set postfields array, example: array('screen_name' => 'J7mbo')
      *
-     * @param array|null $array Array of parameters to send to API
+     * @param array|string|null $array Array of parameters to send to API
      *
      * @throws \Exception When you are trying to set both get and post fields
      *
@@ -146,7 +146,7 @@ class TwitterAPIExchange
     /**
      * Set getfield string, example: '?screen_name=J7mbo'
      *
-     * @param string|null $string Get key and value pairs as string
+     * @param array|string|null $string Get key and value pairs as string
      *
      * @throws \Exception
      *

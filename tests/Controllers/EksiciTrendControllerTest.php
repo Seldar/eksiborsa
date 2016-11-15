@@ -10,12 +10,24 @@
 
 namespace Tests\Controllers;
 
+use App\User;
 
 class EksiciTrendControllerTest extends \TestCase
 {
     public function testShowTrend()
     {
+        $this->loginWithFakeUser();
         $this->visit('/trends')
             ->assertResponseOk();
+    }
+
+    public function loginWithFakeUser()
+    {
+        $user = new User([
+            'id' => 1,
+            'eksikurus' => 40000
+        ]);
+
+        $this->be($user);
     }
 }

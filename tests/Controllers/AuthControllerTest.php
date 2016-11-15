@@ -59,7 +59,8 @@ class AuthControllerTest extends \TestCase
     public function testRegisterFail()
     {
         $this->visit("register")
-            ->assertResponseOk();
+            ->assertResponseOk()
+            ->see("Register");
 
         $this->post("register", [
             "name" => "",
@@ -70,5 +71,12 @@ class AuthControllerTest extends \TestCase
         ])
             ->followRedirects()
             ->see("Register");
+    }
+
+    public function testPasswordReset()
+    {
+        $this->visit("password/reset")
+            ->assertResponseOk()
+            ->see("Reset Password");
     }
 }
