@@ -8,6 +8,7 @@ use Auth;
 use App\Models\Entities\EksiciTrend;
 use App\Models\Repositories\EksiciTrend\EksiciTrendRepository;
 use EksiciRep;
+use EksiciTrendRep;
 
 /**
  * Class EksiciController
@@ -92,7 +93,7 @@ class EksiciController extends Controller
     /**
      * Update Eksici data
      *
-     * @param int $limit
+     * @param int        $limit
      * @param DataParser $dp
      *
      * @return void
@@ -105,8 +106,7 @@ class EksiciController extends Controller
         $result = $matches[1];
         $cntResult = count($result);
         for ($i = 0; $i < $cntResult; $i++) {
-            $eksici = EksiciRep::getByNick($matches[1][$i]);
-            EksiciRep::updateKarma(0, $matches[1][$i], $eksici);
+            $this->updateKarmaByNick($matches[1][$i], 0);
             if (--$limit == 0) {
                 break;
             }
@@ -119,12 +119,10 @@ class EksiciController extends Controller
                 preg_match('/entry-count-lastmonth.*?>(.*?)</is', $content->body, $lastMonth);
                 if (isset($matches[1]) && $matches[1] > 250 && $lastMonth[1] > 0) {
                     $karma = $matches[1];
-                    $eksici = EksiciRep::getByNick($user->nick);
-                    EksiciRep::updateKarma($karma, $user->nick, $eksici);
+                    $eksici = $this->updateKarmaByNick($user->nick, $karma);
 
-                    $eksiciTrendRepository = new EksiciTrendRepository(new EksiciTrend());
-                    $eksiciTrendRepository->save(array(
-                        "eksici_id" => $eksici->first()->id,
+                    EksiciTrendRep::save(array(
+                        "eksici_id" => isset($eksici->id) ? $eksici->id : 0,
                         "created_at" => date("Y-m-d"),
                         "karma" => $karma
                     ));
@@ -132,6 +130,13 @@ class EksiciController extends Controller
             }
         }
         \DB::table('eksici')->where('karma', 0)->delete();
+    }
+
+    public function updateKarmaByNick($nick, $karma)
+    {
+        $eksici = EksiciRep::getByNick($nick);
+        EksiciRep::updateKarma($karma, $nick, $eksici);
+        return $eksici;
     }
 
     /**
@@ -145,19 +150,15 @@ class EksiciController extends Controller
     {
         $twitterApi = new TwitterAPI();
         $result = $twitterApi->getTwitterData();
-        $eksiciTrendRepository = new EksiciTrendRepository(new EksiciTrend());
         $response = "";
         foreach ($result as $user) {
-            $eksici = EksiciRep::getByNick($user->screen_name);
             $karma = round(($user->followers_count / 100000) + ($user->statuses_count / 100), 2);
-            if ($eksici) {
-                $eksiciTrendRepository->save(array(
-                    "eksici_id" => $eksici->id,
-                    "created_at" => date("Y-m-d"),
-                    "karma" => $karma
-                ));
-            }
-            EksiciRep::updateKarma($karma, $user->screen_name, $eksici);
+            $eksici = $this->updateKarmaByNick($user->screen_name, $karma);
+            EksiciTrendRep::save(array(
+                "eksici_id" => isset($eksici->id) ? $eksici->id : 0,
+                "created_at" => date("Y-m-d"),
+                "karma" => $karma
+            ));
             $response .= $user->name . ":  @" . $user->screen_name . ":" . (($user->followers_count / 100000) + ($user->statuses_count / 100)) . "<br>";
             if (--$limit == 0) {
                 break;

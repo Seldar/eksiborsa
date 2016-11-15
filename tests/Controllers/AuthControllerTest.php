@@ -10,6 +10,7 @@
 
 namespace Tsts\Controllers;
 
+use App\User;
 
 class AuthControllerTest extends \TestCase
 {
@@ -78,5 +79,24 @@ class AuthControllerTest extends \TestCase
         $this->visit("password/reset")
             ->assertResponseOk()
             ->see("Reset Password");
+    }
+
+    public function testGuest()
+    {
+        $this->visit("/home")
+            ->see("Login");
+        $this->loginWithFakeUser();
+        $this->visit("/home")
+            ->see("You are logged in");
+    }
+
+    public function loginWithFakeUser()
+    {
+        $user = new User([
+            'id' => 1,
+            'eksikurus' => 40000
+        ]);
+
+        $this->be($user);
     }
 }
