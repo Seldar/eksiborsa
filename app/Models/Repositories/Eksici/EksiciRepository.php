@@ -12,6 +12,7 @@ namespace App\Models\Repositories\Eksici;
 
 use App\Models\Entities\Eksici;
 use Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class EksiciRepository
@@ -143,7 +144,7 @@ class EksiciRepository implements EksiciInterface
      *
      * @param string $nick
      *
-     * @return Eksici|null
+     * @return Eksici|Builder|null
      */
     public function getByNick($nick)
     {

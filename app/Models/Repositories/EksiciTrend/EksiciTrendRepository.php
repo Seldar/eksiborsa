@@ -10,6 +10,7 @@
 
 namespace App\Models\Repositories\EksiciTrend;
 
+use App\Models\Entities\Eksici;
 use App\Models\Entities\EksiciTrend;
 use EksiciRep;
 
@@ -47,11 +48,11 @@ class EksiciTrendRepository implements EksiciTrendInterface
      */
     public function save($data)
     {
-        $this->eksiciTrendModel->eksici_id = $data['eksici_id'];
-        $this->eksiciTrendModel->karma = $data['karma'];
-        $this->eksiciTrendModel->created_at = $data['created_at'];
-
-        $this->eksiciTrendModel->save();
+        $eksiciTrend = new EksiciTrend();
+        $eksiciTrend->eksici_id = $data['eksici_id'];
+        $eksiciTrend->karma = $data['karma'];
+        $eksiciTrend->created_at = $data['created_at'];
+        $eksiciTrend->save();
     }
 
     /**
