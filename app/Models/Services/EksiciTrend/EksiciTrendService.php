@@ -65,10 +65,10 @@ class EksiciTrendService
      *
      * @return Collection
      */
-    public function getByDate($startDate, $endDate)
+    public function getByDate($startDate, $endDate, $eksici, $limit)
     {
 
-        return $this->eksiciRepo->getByDate($startDate, $endDate);
+        return $this->eksiciRepo->getByDate($startDate, $endDate, $eksici, $limit);
     }
 
 }
