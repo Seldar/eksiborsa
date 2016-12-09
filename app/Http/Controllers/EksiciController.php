@@ -144,7 +144,7 @@ class EksiciController extends Controller
      * Update Karma by filtering nick field
      *
      * @param string $nick
-     * @param int $karma
+     * @param int    $karma
      *
      * @return mixed
      */
