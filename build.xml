@@ -81,7 +81,7 @@
         <apply executable="php" taskname="lint">
             <arg value="-l" />
 
-            <fileset dir="${basedir}/app">
+            <fileset dir="${basedir}/src">
                 <include name="**/*.php" />
                 <modified />
             </fileset>
@@ -257,10 +257,10 @@
         <fail message="PHPUnit did not finish successfully">
             <condition>
                 <not>
-                    <equals arg1="
+                    <equals arg1="${result.phpunit}" arg2="0"/>
                 </not>
             </condition>
         </fail>
     </target>
-</project>${result.phpunit}" arg2="0"/>
+</project>
 
