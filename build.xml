@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="eksiborsa" default="full-build">
     <!-- By default, we assume all tools to be on the $PATH -->
-    <property name="phpunit" value="${basedir}/vendor/bin/phpunit"/>
+    <property name="phpunit" value="${basedir}/vendor/bin/phpunit.bat"/>
     <property name="composer" value="C:\ProgramData\ComposerSetup\bin\composer.bat"/>
 
 
