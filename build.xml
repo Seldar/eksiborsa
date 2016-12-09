@@ -3,7 +3,7 @@
     <!-- By default, we assume all tools to be on the $PATH -->
     <property name="phpunit" value="${basedir}/vendor/bin/phpunit.bat"/>
     <property name="composer" value="C:\ProgramData\ComposerSetup\bin\composer.bat"/>
-    <property name="artisan" value="php artisan"/>
+    <property name="artisan" value="C:\wamp64\bin\php\php7.0.4\php.exe artisan"/>
 
 
     <!-- Use this when the tools are located as PHARs in ${basedir}/build/tools
