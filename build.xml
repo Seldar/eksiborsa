@@ -25,7 +25,7 @@
     <property name="phpunit" value="${basedir}/vendor/bin/phpunit"/> -->
 
     <target name="full-build"
-            depends="prepare,static-analysis,composer,artisan-migrate,artisan-keygen,phpunit,-check-failure"
+            depends="prepare,static-analysis,composer,artisan-migrate,environment,artisan-keygen,phpunit,-check-failure"
             description="Performs static analysis, runs the tests, and generates project documentation"/>
 
     <target name="full-build-parallel"
@@ -282,11 +282,19 @@
             <arg value="--force" />
         </exec>
     </target>
-    <target name="artisan-keygen" description="DB migrate">
+    <target name="artisan-keygen" description="keygen created">
         <exec executable="${php}" failonerror="true">
             <arg value="artisan" />
             <arg value="key:generate" />
         </exec>
     </target>
+    <target name="environment" description="environment set">
+        <exec executable="cp" failonerror="true">
+            <arg value=".env.travis" />
+            <arg value=".env" />
+        </exec>
+    </target>
+
+
 </project>
 
