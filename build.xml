@@ -22,7 +22,7 @@
     <property name="phpunit" value="${basedir}/vendor/bin/phpunit"/> -->
 
     <target name="full-build"
-            depends="prepare,static-analysis,phpunit,-check-failure"
+            depends="prepare,static-analysis,composer,phpunit,-check-failure"
             description="Performs static analysis, runs the tests, and generates project documentation"/>
 
     <target name="full-build-parallel"
@@ -261,6 +261,15 @@
                 </not>
             </condition>
         </fail>
+    </target>
+
+    <target name="composer" description="Installing composer dependencies">
+        <exec executable="composer" failonerror="true">
+            <arg value="install" />
+            <arg value="--dev" />
+            <arg value="--prefer-dist" />
+            <arg value="--no-progress" />
+        </exec>
     </target>
 </project>
 
