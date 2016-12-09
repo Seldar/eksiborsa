@@ -289,9 +289,8 @@
         </exec>
     </target>
     <target name="environment" description="environment set">
-        <exec executable="cp" failonerror="true">
-            <arg value=".env.travis" />
-            <arg value=".env" />
+        <exec executable="cmd.exe" failonerror="true">
+            <arg value="/c cp .env.travis .env" />
         </exec>
     </target>
 
