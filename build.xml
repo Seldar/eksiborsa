@@ -3,6 +3,7 @@
     <!-- By default, we assume all tools to be on the $PATH -->
     <property name="phpunit" value="${basedir}/vendor/bin/phpunit.bat"/>
     <property name="composer" value="C:\ProgramData\ComposerSetup\bin\composer.bat"/>
+    <property name="artisan" value="php artisan"/>
 
 
     <!-- Use this when the tools are located as PHARs in ${basedir}/build/tools
@@ -24,7 +25,7 @@
     <property name="phpunit" value="${basedir}/vendor/bin/phpunit"/> -->
 
     <target name="full-build"
-            depends="prepare,static-analysis,composer,phpunit,-check-failure"
+            depends="prepare,static-analysis,composer,artisan-migrate,artisan-keygen,phpunit,-check-failure"
             description="Performs static analysis, runs the tests, and generates project documentation"/>
 
     <target name="full-build-parallel"
@@ -271,6 +272,18 @@
             <arg value="--dev" />
             <arg value="--prefer-dist" />
             <arg value="--no-progress" />
+        </exec>
+    </target>
+
+    <target name="artisan-migrate" description="DB migrate">
+        <exec executable="${artisan}" failonerror="true">
+            <arg value="migrate" />
+            <arg value="--force" />
+        </exec>
+    </target>
+    <target name="artisan-keygen" description="DB migrate">
+        <exec executable="${artisan}" failonerror="true">
+            <arg value="key:generate" />
         </exec>
     </target>
 </project>
