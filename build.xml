@@ -288,10 +288,9 @@
             <arg value="key:generate" />
         </exec>
     </target>
+
     <target name="environment" description="environment set">
-        <exec executable="cmd.exe" failonerror="true">
-            <arg value="/c cp .env.travis .env" />
-        </exec>
+        <copy file=".env.travis" tofile=".env"/>
     </target>
 
 
